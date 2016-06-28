@@ -59,12 +59,29 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.tweetTextLabel.text = tweet.text as? String
         if let timestamp = tweet.timestamp {
             let currentTime = NSDate()
-            let timeElapsed = currentTime.timeIntervalSinceDate(timestamp)
-            //            cell.tweetTimeLabel.text =
-            print(timeElapsed)
+            let timeInSeconds = currentTime.timeIntervalSinceDate(timestamp)
+            if timeInSeconds < 60 {
+                cell.tweetTimeLabel.text = String(format: "%.0f", timeInSeconds) + "s"
+            }
+            else if timeInSeconds < 3600 {
+                let timeInMinutes = round(timeInSeconds / 60)
+                cell.tweetTimeLabel.text = String(format: "%.0f", timeInMinutes) + "m"
+            }
+            else if timeInSeconds < 86400 {
+                let timeInHours = round(timeInSeconds / 3600)
+                cell.tweetTimeLabel.text = String(format: "%.0f", timeInHours) + "h"
+
+            }
+            else {
+                let timeInDays = round(timeInSeconds / 86400)
+                cell.tweetTimeLabel.text = String(format: "%.0f", timeInDays) + "d"
+
+            }
+            print(timeInSeconds)
         }
         return cell
     }
+
     
     
     
