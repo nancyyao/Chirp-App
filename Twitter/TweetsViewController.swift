@@ -18,19 +18,28 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        TwitterClient.sharedInstance.homeTimeline({ (tweets: [Tweet]) in
-            self.tweets = tweets
-            self.tableView.reloadData()
-            
-        }) { (error: NSError) in
-            print("error: \(error.localizedDescription)")
-        }
+        loadData()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func loadData() {
+        TwitterClient.sharedInstance.homeTimeline({ (tweets: [Tweet]) in
+            self.tweets = tweets
+            self.tableView.reloadData()
+        }) { (error: NSError) in
+            print("error: \(error.localizedDescription)")
+        }
+    }
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        loadData()
+        refreshControl.endRefreshing()
+    }
     @IBAction func onLogOut(sender: AnyObject) {
         TwitterClient.sharedInstance.logout()
     }
@@ -70,18 +79,16 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             else if timeInSeconds < 86400 {
                 let timeInHours = round(timeInSeconds / 3600)
                 cell.tweetTimeLabel.text = String(format: "%.0f", timeInHours) + "h"
-
+                
             }
             else {
                 let timeInDays = round(timeInSeconds / 86400)
                 cell.tweetTimeLabel.text = String(format: "%.0f", timeInDays) + "d"
-
             }
-            print(timeInSeconds)
         }
         return cell
     }
-
+    
     
     
     
