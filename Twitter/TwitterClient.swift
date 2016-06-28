@@ -42,7 +42,6 @@ class TwitterClient: BDBOAuth1SessionManager {
             self.currentAccount({ (user: User) -> () in
                 User.currentUser = user
                 self.loginSuccess?()
-                print(User.currentUser)
                 }, failure: { (error: NSError) -> () in
                     self.loginFailure?(error)
             })
@@ -52,15 +51,12 @@ class TwitterClient: BDBOAuth1SessionManager {
         
     }
     func homeTimeline(success: ([Tweet]) -> (), failure: (NSError) -> ()) {
-        
         GET("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
             let dictionaries = response as! [NSDictionary]
             let tweets = Tweet.tweetsWithArray(dictionaries)
-            
             success(tweets)
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
                 failure(error)
-                
         })
     }
     func currentAccount(success: (User) -> (), failure: (NSError) -> ()) {
@@ -73,4 +69,26 @@ class TwitterClient: BDBOAuth1SessionManager {
                 failure(error)
         })
     }
+    func retweet(tweetID: Int, success: (Tweet) -> (), failure: (NSError) -> ()) {
+        POST("1.1/statuses/retweet/\(tweetID).json", parameters: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            let dictionary = response as! NSDictionary
+            let tweet = Tweet(dictionary: dictionary)
+            success(tweet)
+            
+        }) { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+            failure(error)
+        }
+    }
+    func favorite(tweetID: Int, success: (Tweet) -> (), failure: (NSError) -> ()) {
+        POST("1.1/favorites/create.json?id=\(tweetID)", parameters: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            let dictionary = response as! NSDictionary
+            let tweet = Tweet(dictionary: dictionary)
+            success(tweet)
+        }) { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("error: \(error.localizedDescription)")
+        }
+    }
+    
+    
+    
 }

@@ -65,7 +65,17 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         }
+        cell.currentTweet = tweet
         cell.tweetTextLabel.text = tweet.text as? String
+        cell.retweetLabel.text = String(tweet.retweetCount)
+        if tweet.retweeted == true {
+            cell.retweetButton.selected = true
+        }
+        if tweet.favorited == true {
+            cell.likeButton.selected = true
+        }
+        
+        cell.likeLabel.text = String(tweet.favoritesCount)
         if let timestamp = tweet.timestamp {
             let currentTime = NSDate()
             let timeInSeconds = currentTime.timeIntervalSinceDate(timestamp)
@@ -79,7 +89,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             else if timeInSeconds < 86400 {
                 let timeInHours = round(timeInSeconds / 3600)
                 cell.tweetTimeLabel.text = String(format: "%.0f", timeInHours) + "h"
-                
             }
             else {
                 let timeInDays = round(timeInSeconds / 86400)

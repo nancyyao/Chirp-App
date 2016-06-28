@@ -14,6 +14,9 @@
     var retweetCount: Int = 0
     var favoritesCount: Int = 0
     var tweetUser: User?
+    var tweetID: Int?
+    var retweeted: Bool?
+    var favorited: Bool?
     
     init(dictionary: NSDictionary) {
         text = dictionary["text"] as? String
@@ -26,13 +29,15 @@
             timestamp = formatter.dateFromString(timestampString)
         }
         tweetUser = User(dictionary: dictionary["user"] as! NSDictionary)
+        tweetID = dictionary["id"] as? Int
+        retweeted = dictionary["retweeted"] as? Bool
+        favorited = dictionary["favorited"] as? Bool
     }
     
     class func tweetsWithArray(dictionaries: [NSDictionary]) -> [Tweet] {
         var tweets = [Tweet]()
         for dictionary in dictionaries {
             let tweet = Tweet(dictionary: dictionary)
-            print(tweet.tweetUser)
             tweets.append(tweet)
         }
         return tweets
