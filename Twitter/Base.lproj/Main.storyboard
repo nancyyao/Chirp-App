@@ -121,7 +121,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="tweetImageView" destination="h6Z-l5-zKM" id="bFB-4S-kub"/>
+                                            <outlet property="tweetImageView" destination="LhF-ie-z9b" id="8kE-DQ-5ea"/>
                                             <outlet property="tweetNameLabel" destination="DPP-0M-kSw" id="1q6-Za-kNc"/>
                                             <outlet property="tweetTextLabel" destination="kEh-Jt-tnh" id="9Yb-s6-Wmt"/>
                                             <outlet property="tweetTimeLabel" destination="gqi-0g-swL" id="N8o-iH-dIC"/>
