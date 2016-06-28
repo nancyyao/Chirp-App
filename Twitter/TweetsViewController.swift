@@ -8,18 +8,23 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]!
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+
         TwitterClient.sharedInstance.homeTimeline({ (tweets: [Tweet]) in
             self.tweets = tweets
             self.tableView.reloadData()
             
-            for tweet in tweets {
-                print(tweet.text)
-            }
+//            for tweet in tweets {
+//                print(tweet.text)
+//            }
         }) { (error: NSError) in
                 print("error: \(error.localizedDescription)")
         }
@@ -29,15 +34,29 @@ class TweetsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func onLogOut(sender: AnyObject) {
+        TwitterClient.sharedInstance.logout()
     }
-    */
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let tweets = tweets {
+            return tweets.count
+        } else {
+            return 0
+        }
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("TweetTableViewCell", forIndexPath: indexPath) as! TweetTableViewCell
+        let tweet = tweets[indexPath.row]
+        cell.tweetTextLabel.text = tweet.text as? String
+        print(tweet.text)
+        
+        return cell
+    }
+
+
+
+
+
 
 }
