@@ -2,15 +2,15 @@
 
 **Name of your app** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: 3 hours spent in total
+Time spent: 4 hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
 - [x] User can sign in using OAuth login flow
-- [ ] The current signed in user will be persisted across restarts
-- [ ] User can view last 20 tweets from their home timeline
+- [x] The current signed in user will be persisted across restarts
+- [x] User can view last 20 tweets from their home timeline
 - [ ] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
 - [ ] User can pull to refresh.
 - [ ] User should display the relative timestamp for each tweet "8m", "7h"
