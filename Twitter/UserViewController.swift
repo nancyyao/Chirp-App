@@ -28,7 +28,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        loadUserTimeline()
+        tableView.estimatedRowHeight = 200
+        tableView.rowHeight = UITableViewAutomaticDimension
 
         let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
@@ -43,6 +44,12 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let bannerUrl = user.bannerImageUrl {
             userHeaderImageView.setImageWithURL(bannerUrl)
         }
+        
+        loadUserTimeline()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,9 +57,10 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
 
+    //LOAD DATA
     func loadUserTimeline() {
-        TwitterClient.sharedInstance.userTimeline(user.screenname! as String, success: { (userTweets: [Tweet]) in
-            self.userTweets = userTweets
+        TwitterClient.sharedInstance.userTimeline(user.screenname! as String, success: { (tweets: [Tweet]) in
+            self.userTweets = tweets
             self.tableView.reloadData()
             print("loaded user timeline")
         }) { (error: NSError) in
@@ -60,6 +68,13 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    //REFRESH
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        loadUserTimeline()
+        refreshControl.endRefreshing()
+    }
+    
+    //TABLEVIEW
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let userTweets = userTweets {
             return userTweets.count
@@ -71,9 +86,9 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as! UserTableViewCell
         let userTweet = userTweets![indexPath.row]
 
-        cell.userTimelineNameLabel.text = user.name as? String
-        cell.userTimelineUsernameLabel.text = "@\(user.screenname!)"
-        cell.userTimelineImageView.setImageWithURL(user.profileUrl!)
+        cell.userTimelineNameLabel.text = userNameLabel.text
+        cell.userTimelineUsernameLabel.text = userUsernameLabel.text
+        cell.userTimelineImageView.image = userImageView.image
         
         cell.userTimelineTextLabel.text = userTweet.text as? String
         cell.userTimelineRetweetLabel.text = String(userTweet.retweetCount)

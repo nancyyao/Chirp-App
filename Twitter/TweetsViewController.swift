@@ -56,7 +56,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     //INFINITE SCROLL
-
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if (!isMoreDataLoading) {
             // Calculate the position of one screen length before the bottom of the results
@@ -67,81 +66,32 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
                 isMoreDataLoading = true
                 
-                [tableView .addInfiniteScrollingWithActionHandler({
-                    print("loading more data")
+                tableView.addInfiniteScrollingWithActionHandler({
                     self.isMoreDataLoading = false
                     
-                    self.loadData()
+                    self.loadMoreData()
 
                     self.tableView.infiniteScrollingView.stopAnimating()
-                    self.tableView.reloadData()
-                })]
-                
-                /*
-                // Update position of loadingMoreView, and start loading indicator
-                let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
-                loadingMoreView?.frame = frame
-                loadingMoreView!.startAnimating()
-                
-                loadMoreData()
-                */
+                })
             }
         }
     }
-   /*
     func loadMoreData() {
         print("loading more data")
         self.isMoreDataLoading = false
- //       self.loadingMoreView!.stopAnimating()
 
-        // ... Use the new data to update the data source ...
         loadData()
-        // Reload the tableView now that there is new data
+
         self.tableView.reloadData()
-        
     }
-     
-    class InfiniteScrollActivityView: UIView {
-        var activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
-        static let defaultHeight:CGFloat = 60.0
-        
-        required init?(coder aDecoder: NSCoder) {
-            super.init(coder: aDecoder)
-            setupActivityIndicator()
-        }
-        
-        override init(frame aRect: CGRect) {
-            super.init(frame: aRect)
-            setupActivityIndicator()
-        }
-        
-        override func layoutSubviews() {
-            super.layoutSubviews()
-            activityIndicatorView.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
-        }
-        
-        func setupActivityIndicator() {
-            activityIndicatorView.activityIndicatorViewStyle = .Gray
-            activityIndicatorView.hidesWhenStopped = true
-            self.addSubview(activityIndicatorView)
-        }
-        
-        func stopAnimating() {
-            self.activityIndicatorView.stopAnimating()
-            self.hidden = true
-        }
-        
-        func startAnimating() {
-            self.hidden = false
-            self.activityIndicatorView.startAnimating()
-        }
-    }*/
-    
+ 
     //REFRESH
     func refreshControlAction(refreshControl: UIRefreshControl) {
         loadData()
         refreshControl.endRefreshing()
     }
+    
+    //LOG OUT
     @IBAction func onLogOut(sender: AnyObject) {
         TwitterClient.sharedInstance.logout()
     }

@@ -59,8 +59,20 @@ class TwitterClient: BDBOAuth1SessionManager {
                 failure(error)
         })
     }
+//    func updatedHomeTimeline(success: ([Tweet]) -> (), failure: (NSError) -> ()) {
+//        GET("1.1/statuses/home_timeline.json", parameters: , progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+//            let dictionaries = response as! [NSDictionary]
+//            let tweets = Tweet.tweetsWithArray(dictionaries)
+//            success(tweets)
+//            }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+//                failure(error)
+//        })
+//    }
     func userTimeline(screenname: String, success: ([Tweet]) -> (), failure: (NSError) -> ()) {
-        GET("1.1/statuses/user_timeline.json?screen_name=\(screenname)", parameters: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+        let userDictionary: NSDictionary = [
+            "screen_name": screenname
+        ]
+        GET("1.1/statuses/user_timeline.json", parameters: userDictionary, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
             let dictionaries = response as! [NSDictionary]
             let tweets = Tweet.tweetsWithArray(dictionaries)
             success(tweets)
@@ -90,7 +102,10 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     func favorite(tweetID: Int, success: (Tweet) -> (), failure: (NSError) -> ()) {
-        POST("1.1/favorites/create.json?id=\(tweetID)", parameters: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+        let favoriteDictionary: NSDictionary = [
+            "id": tweetID
+        ]
+        POST("1.1/favorites/create.json", parameters: favoriteDictionary, success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
             let dictionary = response as! NSDictionary
             let tweet = Tweet(dictionary: dictionary)
             success(tweet)
@@ -98,8 +113,11 @@ class TwitterClient: BDBOAuth1SessionManager {
                 print("error: \(error.localizedDescription)")
         }
     }
-    func compose(tweetText: String, success: (Tweet) -> (), failure: (NSError) -> ()) {
-        POST("1.1/statuses/update.json?status=\(tweetText)", parameters: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+    func compose(text: String, success: (Tweet) -> (), failure: (NSError) -> ()) {
+        let newTweet: NSDictionary = [
+            "status" : text
+        ]
+        POST("1.1/statuses/update.json", parameters: newTweet, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
             let dictionary = response as! NSDictionary
             let tweet = Tweet(dictionary: dictionary)
             success(tweet)

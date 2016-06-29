@@ -8,15 +8,21 @@
 
 import UIKit
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!
     var tweetText: String?
     
     @IBOutlet weak var composeImageView: UIImageView!
     @IBOutlet weak var composeNameLabel: UILabel!
     @IBOutlet weak var composeUsernameLabel: UILabel!
+    @IBOutlet weak var characterCountLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        textView.delegate = self
+        
+        characterCountLabel.text = String(140)
+        
         let user = User.currentUser
         if let screenname = user!.screenname as? String {
             composeUsernameLabel.text = "@\(screenname)"
@@ -33,16 +39,26 @@ class ComposeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //TEXTVIEW
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+        let numberOfChars = newText.characters.count // for Swift use count(newText)
+        characterCountLabel.text = String(140 - numberOfChars)
+        return numberOfChars < 140;
+    }
+    
+    //BUTTONS
     @IBAction func onCancelButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func onTweetButton(sender: AnyObject) {
         tweetText = textView.text
+
         TwitterClient.sharedInstance.compose(tweetText!, success: { (tweet: Tweet) in
             print("status updated")
         }) { (error: NSError) in
-                print("error: \(error.localizedDescription)")
+            print("error: \(error.localizedDescription)")
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
