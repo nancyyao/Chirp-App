@@ -56,14 +56,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let tweet = tweets[indexPath.row]
         
         if let user = tweet.tweetUser {
-            if let screenname = user.screenname as? String {
-                cell.tweetUsernameLabel.text = "@\(screenname)"
-            }
+            cell.tweetUsernameLabel.text = "@\(user.screenname!)"
             cell.tweetNameLabel.text = user.name as? String
             if let imageUrl = user.profileUrl {
-                if let data = NSData(contentsOfURL: imageUrl) {
-                    cell.tweetImageView.image = UIImage(data: data)
-                }
+                cell.tweetImageView.setImageWithURL(imageUrl)
             }
         }
         
@@ -71,7 +67,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.tweetTextLabel.text = tweet.text as? String
         cell.retweetLabel.text = String(tweet.retweetCount)
         cell.likeLabel.text = String(tweet.favoritesCount)
-
+        
         if tweet.retweeted == true {
             cell.retweetButton.selected = true
         } else {
@@ -104,7 +100,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         return cell
     }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let detailVC = segue.destinationViewController as? DetailViewController {
             let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)

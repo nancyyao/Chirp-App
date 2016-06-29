@@ -25,15 +25,9 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let user = detailTweet.tweetUser {
-            if let screenname = user.screenname as? String {
-                detailUsernameLabel.text = "@\(screenname)"
-            }
+            detailUsernameLabel.text = "@\(user.screenname!)"
             detailNameLabel.text = user.name as? String
-            if let imageUrl = user.profileUrl {
-                if let data = NSData(contentsOfURL: imageUrl) {
-                    detailImageView.image = UIImage(data: data)
-                }
-            }
+            detailImageView.setImageWithURL(user.profileUrl!)
         }
         detailRetweetLabel.text = String(detailTweet.retweetCount)
         detailLikeLabel.text = String(detailTweet.favoritesCount)
@@ -70,7 +64,7 @@ class DetailViewController: UIViewController {
             detailLikeButton.selected = false
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -98,5 +92,13 @@ class DetailViewController: UIViewController {
             print("error: \(error.localizedDescription)")
         }
     }
-
+    @IBAction func onImageButton(sender: UIButton) {
+        self.performSegueWithIdentifier("userSegue", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let userVC = segue.destinationViewController as? UserViewController {
+            userVC.user = detailTweet.tweetUser! as User
+        }
+    }
 }
