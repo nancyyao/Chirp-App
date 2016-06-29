@@ -25,6 +25,7 @@
 		F91025501D233CDD001B4550 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910254F1D233CDD001B4550 /* DetailViewController.swift */; };
 		F91025521D2371C3001B4550 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91025511D2371C3001B4550 /* ComposeViewController.swift */; };
 		F91025541D2380F5001B4550 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91025531D2380F5001B4550 /* UserViewController.swift */; };
+		F91025561D23A610001B4550 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91025551D23A610001B4550 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		F910254F1D233CDD001B4550 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F91025511D2371C3001B4550 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		F91025531D2380F5001B4550 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		F91025551D23A610001B4550 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FCE8B26059DF42940E41094D /* Pods_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -201,6 +203,7 @@
 				F910254F1D233CDD001B4550 /* DetailViewController.swift */,
 				F91025511D2371C3001B4550 /* ComposeViewController.swift */,
 				F91025531D2380F5001B4550 /* UserViewController.swift */,
+				F91025551D23A610001B4550 /* ProfileViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				F91025091D21CF72001B4550 /* Tweet.swift in Sources */,
 				F91025021D21C368001B4550 /* LoginViewController.swift in Sources */,
 				F910250D1D21E0E5001B4550 /* TweetsViewController.swift in Sources */,
+				F91025561D23A610001B4550 /* ProfileViewController.swift in Sources */,
 				F910250B1D21D5EA001B4550 /* TwitterClient.swift in Sources */,
 				F91024D41D21BBCA001B4550 /* AppDelegate.swift in Sources */,
 				F91025101D223D26001B4550 /* TweetTableViewCell.swift in Sources */,

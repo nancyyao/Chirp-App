@@ -13,15 +13,16 @@ class UserViewController: UIViewController {
     @IBOutlet weak var userHeaderImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userUsernameLabel: UILabel!
+    @IBOutlet weak var userTaglineLabel: UILabel!
+
     @IBOutlet weak var userTweetsLabel: UILabel!
     @IBOutlet weak var userFollowingLabel: UILabel!
     @IBOutlet weak var userFollowersLabel: UILabel!
-    @IBOutlet weak var userTaglineLabel: UILabel!
     var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var numberFormatter = NSNumberFormatter()
+        let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
         
         userNameLabel.text = user.name as? String
@@ -31,6 +32,9 @@ class UserViewController: UIViewController {
         userFollowingLabel.text = numberFormatter.stringFromNumber(user.following)
         userFollowersLabel.text = numberFormatter.stringFromNumber(user.followers)
         userTaglineLabel.text = user.tagline as? String
+        if let bannerUrl = user.bannerImageUrl {
+            userHeaderImageView.setImageWithURL(bannerUrl)
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -17,6 +17,7 @@ class User: NSObject {
     var tweetsCount: Int = 0
     var following: Int = 0
     var followers: Int = 0
+    var bannerImageUrl: NSURL?
     
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
@@ -30,6 +31,9 @@ class User: NSObject {
         tweetsCount = dictionary["statuses_count"] as! Int
         following = dictionary["friends_count"] as! Int
         followers = dictionary["followers_count"] as! Int
+        if let bannerImageUrlString = dictionary["profile_banner_url"] as? String {
+            bannerImageUrl = NSURL(string: bannerImageUrlString)
+        }
     }
 
     static let userDidLogoutNotification = "UserDidLogout"
