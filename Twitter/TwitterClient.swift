@@ -88,7 +88,14 @@ class TwitterClient: BDBOAuth1SessionManager {
                 print("error: \(error.localizedDescription)")
         }
     }
-    
-    
+    func compose(tweetText: String, success: (Tweet) -> (), failure: (NSError) -> ()) {
+        POST("1.1/statuses/update.json?status=\(tweetText)", parameters: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+            let dictionary = response as! NSDictionary
+            let tweet = Tweet(dictionary: dictionary)
+            success(tweet)
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+                print("error: \(error.localizedDescription)")
+        }
+    }
     
 }

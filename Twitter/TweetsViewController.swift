@@ -104,11 +104,18 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         return cell
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let detailVC = segue.destinationViewController as? DetailViewController {
             let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
             detailVC.detailTweet = tweets[indexPath!.row] as Tweet
         }
     }
+    
+    
+    
+    
+    
+    
+    
 }

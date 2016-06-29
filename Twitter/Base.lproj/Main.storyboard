@@ -226,6 +226,12 @@
                                 <action selector="onLogOut:" destination="SYC-8K-76g" id="YTF-8b-Kf5"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="New" id="deh-A7-XPE">
+                            <connections>
+                                <action selector="onComposeButton:" destination="SYC-8K-76g" id="Y7q-2g-q2G"/>
+                                <segue destination="uN7-Z4-gG5" kind="presentation" identifier="ComposeSegue" id="dF6-YB-IVr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Ek7-yY-ain" id="HML-ke-uE4"/>
@@ -234,6 +240,104 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EcY-kg-0AH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1134" y="349"/>
+        </scene>
+        <!--Compose View Controller-->
+        <scene sceneID="dSJ-dN-lvx">
+            <objects>
+                <viewController id="KkC-Vk-Tv6" customClass="ComposeViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hGj-L9-KdA"/>
+                        <viewControllerLayoutGuide type="bottom" id="kxJ-sB-T2V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7On-w9-3w7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7br-5z-uSY">
+                                <rect key="frame" x="16" y="72" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7br-5z-uSY" secondAttribute="height" multiplier="54:53" id="7Xq-Jz-3Fc"/>
+                                    <constraint firstAttribute="width" constant="50" id="JWV-h0-F7x"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="X0b-SS-goD"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="Y5J-tY-FXc"/>
+                                    <constraint firstAttribute="height" constant="50" id="iyI-S2-EEx"/>
+                                    <constraint firstAttribute="height" constant="40" id="sVu-1Z-wUN"/>
+                                    <constraint firstAttribute="width" constant="40" id="tUW-5s-edR"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7Xq-Jz-3Fc"/>
+                                        <exclude reference="JWV-h0-F7x"/>
+                                        <exclude reference="iyI-S2-EEx"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yV5-7e-H86">
+                                <rect key="frame" x="64" y="76" width="60" height="14.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCU-kO-277">
+                                <rect key="frame" x="64" y="92" width="62" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WFw-Tc-P7M">
+                                <rect key="frame" x="16" y="128" width="288" height="424"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="yes"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WFw-Tc-P7M" firstAttribute="leading" secondItem="7On-w9-3w7" secondAttribute="leading" constant="16" id="4xn-6P-30n"/>
+                            <constraint firstItem="7br-5z-uSY" firstAttribute="top" secondItem="hGj-L9-KdA" secondAttribute="bottom" constant="8" id="Cli-1Y-VsT"/>
+                            <constraint firstItem="yV5-7e-H86" firstAttribute="top" secondItem="hGj-L9-KdA" secondAttribute="bottom" constant="12" id="Dyw-3F-x5t"/>
+                            <constraint firstItem="DCU-kO-277" firstAttribute="leading" secondItem="yV5-7e-H86" secondAttribute="leading" id="TNV-dg-AY6"/>
+                            <constraint firstItem="yV5-7e-H86" firstAttribute="leading" secondItem="7br-5z-uSY" secondAttribute="trailing" constant="8" id="TlB-xp-DB5"/>
+                            <constraint firstItem="WFw-Tc-P7M" firstAttribute="top" secondItem="7br-5z-uSY" secondAttribute="bottom" constant="16" id="U8d-ET-gVx"/>
+                            <constraint firstAttribute="trailing" secondItem="WFw-Tc-P7M" secondAttribute="trailing" constant="16" id="YSa-7x-oVv"/>
+                            <constraint firstItem="DCU-kO-277" firstAttribute="top" secondItem="yV5-7e-H86" secondAttribute="bottom" constant="2" id="aOs-Dp-XdI"/>
+                            <constraint firstItem="DCU-kO-277" firstAttribute="leading" secondItem="yV5-7e-H86" secondAttribute="leading" id="eh4-u3-tCq"/>
+                            <constraint firstItem="DCU-kO-277" firstAttribute="top" secondItem="yV5-7e-H86" secondAttribute="bottom" constant="2" id="lcR-wB-Kzd"/>
+                            <constraint firstItem="7br-5z-uSY" firstAttribute="leading" secondItem="7On-w9-3w7" secondAttribute="leading" constant="16" id="pRa-Ag-pAg"/>
+                            <constraint firstItem="yV5-7e-H86" firstAttribute="leading" secondItem="7br-5z-uSY" secondAttribute="trailing" constant="8" id="wdJ-3f-IBq"/>
+                            <constraint firstItem="kxJ-sB-T2V" firstAttribute="top" secondItem="WFw-Tc-P7M" secondAttribute="bottom" constant="16" id="yuy-IE-SyZ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="wdJ-3f-IBq"/>
+                                <exclude reference="TNV-dg-AY6"/>
+                                <exclude reference="aOs-Dp-XdI"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="pB2-x1-xY1">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="BfH-Vi-LPE">
+                            <connections>
+                                <action selector="onCancelButton:" destination="KkC-Vk-Tv6" id="xjZ-Wv-aIY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="N2K-xp-8w4">
+                            <connections>
+                                <action selector="onTweetButton:" destination="KkC-Vk-Tv6" id="RBW-ea-L0A"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="composeImageView" destination="7br-5z-uSY" id="Fqp-s5-oet"/>
+                        <outlet property="composeNameLabel" destination="yV5-7e-H86" id="kCb-wF-aye"/>
+                        <outlet property="composeUsernameLabel" destination="DCU-kO-277" id="DZ4-1Y-q24"/>
+                        <outlet property="textView" destination="WFw-Tc-P7M" id="PCL-1q-QEC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yag-5f-gfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1530" y="1017"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="slP-Ka-EhL">
@@ -431,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AKb-hf-hY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1508" y="349"/>
+            <point key="canvasLocation" x="1523" y="349"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CeQ-0M-lwP">
@@ -451,6 +555,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ts5-cP-bpf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="742" y="349"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="amS-wk-Slr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uN7-Z4-gG5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fWP-CD-u1O">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KkC-Vk-Tv6" kind="relationship" relationship="rootViewController" id="5yg-67-Bwh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yuP-LG-fOM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1134" y="1017"/>
         </scene>
     </scenes>
     <resources>
