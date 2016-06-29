@@ -2,7 +2,7 @@
 
 **Name of your app** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: 12 hours spent in total
+Time spent: 13 hours spent in total
 
 ## User Stories
 
@@ -20,7 +20,7 @@ The following **required** functionality is completed:
 - [x] User can tap the profile image in any tweet to see another user's profile
    - [x] Contains the user header view: picture and tagline
    - [x] Contains a section with the users basic stats: # tweets, # following, # followers
-   - [ ] Profile view should include that user's timeline
+   - [x] Profile view should include that user's timeline
 - [x] User can navigate to view their own profile
    - [x] Contains the user header view: picture and tagline
    - [x] Contains a section with the users basic stats: # tweets, # following, # followers
