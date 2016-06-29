@@ -54,6 +54,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetTableViewCell", forIndexPath: indexPath) as! TweetTableViewCell
         let tweet = tweets[indexPath.row]
+        
         if let user = tweet.tweetUser {
             if let screenname = user.screenname as? String {
                 cell.tweetUsernameLabel.text = "@\(screenname)"
@@ -65,17 +66,23 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         }
+        
         cell.currentTweet = tweet
         cell.tweetTextLabel.text = tweet.text as? String
         cell.retweetLabel.text = String(tweet.retweetCount)
+        cell.likeLabel.text = String(tweet.favoritesCount)
+
         if tweet.retweeted == true {
             cell.retweetButton.selected = true
+        } else {
+            cell.retweetButton.selected = false
         }
         if tweet.favorited == true {
             cell.likeButton.selected = true
+        } else {
+            cell.likeButton.selected = false
         }
         
-        cell.likeLabel.text = String(tweet.favoritesCount)
         if let timestamp = tweet.timestamp {
             let currentTime = NSDate()
             let timeInSeconds = currentTime.timeIntervalSinceDate(timestamp)
@@ -98,10 +105,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
-    
-    
-    
-    
-    
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let detailVC = segue.destinationViewController as? DetailViewController {
+            let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
+            detailVC.detailTweet = tweets[indexPath!.row] as Tweet
+        }
+    }
 }

@@ -30,6 +30,8 @@ class TweetTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func onLikeButton(sender: AnyObject) {
+        let tweetLikes = currentTweet.favoritesCount + 1
+        likeLabel.text = String(tweetLikes)
         likeButton.selected = true
         TwitterClient.sharedInstance.favorite(currentTweet.tweetID!, success: { (tweet: Tweet) in
             print("favorite successful")
@@ -38,6 +40,8 @@ class TweetTableViewCell: UITableViewCell {
         }
     }
     @IBAction func onRetweetButton(sender: AnyObject) {
+        let tweetRetweets = currentTweet.retweetCount + 1
+        retweetLabel.text = String(tweetRetweets)
         retweetButton.selected = true
         TwitterClient.sharedInstance.retweet(currentTweet.tweetID!, success: { (tweet: Tweet) in
             print("retweet successful")
