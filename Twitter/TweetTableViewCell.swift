@@ -29,14 +29,16 @@ class TweetTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-    @IBAction func onLikeButton(sender: AnyObject) {
+
+    //BUTTONS
+    @IBAction func onLikeButton(sender: UIButton) {
         let tweetLikes = currentTweet.favoritesCount + 1
         likeLabel.text = String(tweetLikes)
         likeButton.selected = true
         TwitterClient.sharedInstance.favorite(currentTweet.tweetID!, success: { (tweet: Tweet) in
             print("favorite successful")
         }) { (error: NSError) in
-                print("error: \(error.localizedDescription)")
+            print("error: \(error.localizedDescription)")
         }
     }
     @IBAction func onRetweetButton(sender: AnyObject) {
