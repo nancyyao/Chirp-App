@@ -72,24 +72,39 @@ class DetailViewController: UIViewController {
     @IBAction func onDetailReplyButton(sender: AnyObject) {
     }
     @IBAction func onDetailRetweetButton(sender: AnyObject) {
-        let detailRetweets = detailTweet.retweetCount + 1
-        detailRetweetLabel.text = String(detailRetweets)
-        detailRetweetButton.selected = true
-        TwitterClient.sharedInstance.retweet(detailTweet.tweetID!, success: { (tweet: Tweet) in
-            print("retweet successful")
-            
-        }) { (error: NSError) in
-            print("error: \(error.localizedDescription)")
+        if detailTweet.retweeted == false { //not yet retweeted
+            detailRetweetButton.selected = true
+            detailRetweetLabel.text = String(detailTweet.retweetCount + 1)
+            TwitterClient.sharedInstance.retweet(detailTweet, success: { (tweet: Tweet) in
+                print("retweet successful")
+                
+            }) { (error: NSError) in
+                print("error: \(error.localizedDescription)")
+            }
+        } else {
+            detailRetweetButton.selected = false
+            detailRetweetLabel.text = String(detailTweet.retweetCount - 1)
+            //TwitterClient.sharedInstance.unretweet()
         }
     }
+    
     @IBAction func onDetailLikeButton(sender: AnyObject) {
-        let detailLikes = detailTweet.favoritesCount + 1
-        detailLikeLabel.text = String(detailLikes)
-        detailLikeButton.selected = true
-        TwitterClient.sharedInstance.favorite(detailTweet.tweetID!, success: { (tweet: Tweet) in
-            print("favorite successful")
-        }) { (error: NSError) in
-            print("error: \(error.localizedDescription)")
+        if detailTweet.favorited == false { //not yet favorited
+            detailLikeButton.selected = true
+            detailLikeLabel.text = String(detailTweet.favoritesCount + 1)
+            TwitterClient.sharedInstance.favorite(detailTweet, success: { (tweet: Tweet) in
+                print("favorite successful")
+            }) { (error: NSError) in
+                print("error: \(error.localizedDescription)")
+            }
+        } else {
+            detailLikeButton.selected = false
+            detailLikeLabel.text = String(detailTweet.favoritesCount - 1)
+            TwitterClient.sharedInstance.unfavorite(detailTweet, success: { (tweet: Tweet) in
+                print("unfavorite successful")
+                }, failure: { (error: NSError) in
+                    print("error: \(error.localizedDescription)")
+            })
         }
     }
     @IBAction func onImageButton(sender: UIButton) {
@@ -101,4 +116,5 @@ class DetailViewController: UIViewController {
             userVC.user = detailTweet.tweetUser! as User
         }
     }
+    
 }

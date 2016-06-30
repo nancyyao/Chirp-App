@@ -17,6 +17,8 @@
     var tweetID: Int?
     var retweeted: Bool?
     var favorited: Bool?
+    var retweetedStatus: Tweet?
+    var currentUserRetweet: NSDictionary?
     
     init(dictionary: NSDictionary) {
         text = dictionary["text"] as? String
@@ -32,6 +34,8 @@
         tweetID = dictionary["id"] as? Int
         retweeted = dictionary["retweeted"] as? Bool
         favorited = dictionary["favorited"] as? Bool
+        retweetedStatus = dictionary["retweeted_status"] as? Tweet
+        currentUserRetweet = dictionary["current_user_retweet"] as? NSDictionary
     }
     
     class func tweetsWithArray(dictionaries: [NSDictionary]) -> [Tweet] {

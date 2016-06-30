@@ -24,35 +24,53 @@ class TweetTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-
+    
     //BUTTONS
     @IBAction func onLikeButton(sender: UIButton) {
-        let tweetLikes = currentTweet.favoritesCount + 1
-        likeLabel.text = String(tweetLikes)
-        likeButton.selected = true
-        TwitterClient.sharedInstance.favorite(currentTweet.tweetID!, success: { (tweet: Tweet) in
-            print("favorite successful")
-        }) { (error: NSError) in
-            print("error: \(error.localizedDescription)")
+        if currentTweet.favorited == false { //not yet favorited
+            print("favoriting")
+            likeButton.selected = true
+            likeLabel.text = String(currentTweet.favoritesCount + 1)
+            TwitterClient.sharedInstance.favorite(currentTweet, success: { (tweet: Tweet) in
+                print("favorite successful")
+            }) { (error: NSError) in
+                print("error: \(error.localizedDescription)")
+            }
+        } else {
+            print("unfavoriting")
+            likeButton.selected = false
+            likeLabel.text = String(currentTweet.favoritesCount - 1)
+            currentTweet.favorited = false
+            TwitterClient.sharedInstance.unfavorite(currentTweet, success: { (tweet: Tweet) in
+                print("unfavorite successful")
+                }, failure: { (error: NSError) in
+                    print("error: \(error.localizedDescription)")
+            })
+            
         }
     }
     @IBAction func onRetweetButton(sender: AnyObject) {
-        let tweetRetweets = currentTweet.retweetCount + 1
-        retweetLabel.text = String(tweetRetweets)
-        retweetButton.selected = true
-        TwitterClient.sharedInstance.retweet(currentTweet.tweetID!, success: { (tweet: Tweet) in
-            print("retweet successful")
-        }) { (error: NSError) in
+        if currentTweet.retweeted == false { //not yet retweeted
+            retweetButton.selected = true
+            retweetLabel.text = String(currentTweet.retweetCount + 1)
+            TwitterClient.sharedInstance.retweet(currentTweet, success: { (tweet: Tweet) in
+                print("retweet successful")
+            }) { (error: NSError) in
                 print("error: \(error.localizedDescription)")
+            }
+        } else { //already retweeted
+            retweetButton.selected = false
+            retweetLabel.text = String(currentTweet.retweetCount - 1)
+            //TwitterClient.sharedInstance.unretweet(currentTweet.tweetID)
         }
     }
     
     @IBAction func onReplyButton(sender: AnyObject) {
     }
-
+    
 }
