@@ -19,7 +19,8 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var retweetButton: UIButton!
     var currentTweet: Tweet!
     @IBOutlet weak var likeButton: UIButton!
-    
+    @IBOutlet weak var replyButton: UIButton!
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -70,7 +71,5 @@ class TweetTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func onReplyButton(sender: AnyObject) {
-    }
     
 }

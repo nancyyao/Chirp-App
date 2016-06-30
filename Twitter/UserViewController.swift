@@ -126,5 +126,18 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         return cell
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let replyVC = segue.destinationViewController as? ReplyViewController {
+            let button = sender as! UIButton
+            let view = button.superview!
+            let buttonCell = view.superview as! UITableViewCell
+            let indexPath = tableView.indexPathForCell(buttonCell)
+            
+            let replyTweet = userTweets![indexPath!.row] as Tweet
+            let replyUser = replyTweet.tweetUser!
+            replyVC.screenname = replyUser.screenname as! String
+            replyVC.replyId = replyTweet.tweetID as Int!
+        }
+    }
 
 }

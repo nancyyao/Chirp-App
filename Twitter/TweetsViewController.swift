@@ -13,7 +13,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]!
     var isMoreDataLoading = false
-//    var loadingMoreView:InfiniteScrollActivityView?
+    //    var loadingMoreView:InfiniteScrollActivityView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,25 +23,24 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.rowHeight = UITableViewAutomaticDimension
         
         loadData()
-
-        /*
-        // Set up Infinite Scroll loading indicator
-        let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
-        loadingMoreView = InfiniteScrollActivityView(frame: frame)
-        loadingMoreView!.hidden = true
-        tableView.addSubview(loadingMoreView!)
         
-        var insets = tableView.contentInset;
-        insets.bottom += InfiniteScrollActivityView.defaultHeight;
-        tableView.contentInset = insets
-        */
+        /*
+         // Set up Infinite Scroll loading indicator
+         let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+         loadingMoreView = InfiniteScrollActivityView(frame: frame)
+         loadingMoreView!.hidden = true
+         tableView.addSubview(loadingMoreView!)
+         
+         var insets = tableView.contentInset;
+         insets.bottom += InfiniteScrollActivityView.defaultHeight;
+         tableView.contentInset = insets
+         */
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
     }
     override func viewDidAppear(animated: Bool) {
-        print("view will appear")
         loadData()
     }
     override func didReceiveMemoryWarning() {
@@ -74,7 +73,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     self.isMoreDataLoading = false
                     
                     self.loadMoreData()
-
+                    
                     self.tableView.infiniteScrollingView.stopAnimating()
                 })
             }
@@ -83,12 +82,12 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func loadMoreData() {
         print("loading more data")
         self.isMoreDataLoading = false
-
+        
         loadData()
-
+        
         self.tableView.reloadData()
     }
- 
+    
     //REFRESH
     func refreshControlAction(refreshControl: UIRefreshControl) {
         loadData()
@@ -124,6 +123,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.tweetTextLabel.text = tweet.text as? String
         cell.retweetLabel.text = String(tweet.retweetCount)
         cell.likeLabel.text = String(tweet.favoritesCount)
+        cell.replyButton.tag = indexPath.row
         
         if tweet.retweeted == true {
             cell.retweetButton.selected = true
@@ -164,12 +164,16 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
             detailVC.detailTweet = tweets[indexPath!.row] as Tweet
         }
+        if let replyVC = segue.destinationViewController as? ReplyViewController {
+            let button = sender as! UIButton
+            let view = button.superview!
+            let buttonCell = view.superview as! UITableViewCell
+            let indexPath = tableView.indexPathForCell(buttonCell)
+            
+            let replyTweet = tweets[indexPath!.row] as Tweet
+            let replyUser = replyTweet.tweetUser! 
+            replyVC.screenname = replyUser.screenname as! String
+            replyVC.replyId = replyTweet.tweetID as Int!
+        }
     }
-    
-    
-    
-    
-    
-    
-    
 }

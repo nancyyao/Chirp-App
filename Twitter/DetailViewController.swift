@@ -115,6 +115,12 @@ class DetailViewController: UIViewController {
         if let userVC = segue.destinationViewController as? UserViewController {
             userVC.user = detailTweet.tweetUser! as User
         }
+        if let replyVC = segue.destinationViewController as? ReplyViewController {
+            let replyTweet = detailTweet
+            let replyUser = replyTweet.tweetUser!
+            replyVC.screenname = replyUser.screenname as! String
+            replyVC.replyId = replyTweet.tweetID as Int!
+        }
     }
     
 }
