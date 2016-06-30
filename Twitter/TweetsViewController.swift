@@ -13,6 +13,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]!
     var isMoreDataLoading = false
+    var count = 20
     //    var loadingMoreView:InfiniteScrollActivityView?
     
     override func viewDidLoad() {
@@ -50,11 +51,15 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //LOAD DATA
     func loadData() {
-        TwitterClient.sharedInstance.homeTimeline({ (tweets: [Tweet]) in
+        count = 20
+        let dictionary: NSDictionary = [
+            "count": count
+        ]
+        TwitterClient.sharedInstance.homeTimeline(dictionary, success: { (tweets: [Tweet]) in
             self.tweets = tweets
             self.tableView.reloadData()
         }) { (error: NSError) in
-            print("error: \(error.localizedDescription)")
+                print("error: \(error.localizedDescription)")
         }
     }
     
@@ -82,9 +87,15 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func loadMoreData() {
         print("loading more data")
         self.isMoreDataLoading = false
-        
-        loadData()
-        
+        let dictionary: NSDictionary = [
+            "count": count + 1
+        ]
+        TwitterClient.sharedInstance.homeTimeline(dictionary, success: { (tweets: [Tweet]) in
+            self.tweets = tweets
+            self.tableView.reloadData()
+        }) { (error: NSError) in
+            print("error: \(error.localizedDescription)")
+        }
         self.tableView.reloadData()
     }
     
@@ -114,6 +125,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let user = tweet.tweetUser {
             cell.tweetUsernameLabel.text = "@\(user.screenname!)"
             cell.tweetNameLabel.text = user.name as? String
+            
+            cell.tweetImageView.layer.borderWidth = 0
+            cell.tweetImageView.layer.cornerRadius = cell.tweetImageView.frame.height/10
+            cell.tweetImageView.clipsToBounds = true
             if let imageUrl = user.profileUrl {
                 cell.tweetImageView.setImageWithURL(imageUrl)
             }

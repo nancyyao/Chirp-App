@@ -10,15 +10,6 @@ import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var profileHeaderImageView: UIImageView!
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var profileNameLabel: UILabel!
-    @IBOutlet weak var profileUsernameLabel: UILabel!
-    @IBOutlet weak var profileTaglineLabel: UILabel!
-    
-    @IBOutlet weak var profileTweetsLabel: UILabel!
-    @IBOutlet weak var profileFollowingLabel: UILabel!
-    @IBOutlet weak var profileFollowersLabel: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
     var profileTweets: [Tweet]!
     let user = User.currentUser! as User
@@ -30,25 +21,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        let numberFormatter = NSNumberFormatter()
-        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
-        
-        profileNameLabel.text = user.name as? String
-        profileUsernameLabel.text = "@\(user.screenname!)"
-        profileImageView.setImageWithURL(user.profileUrl!)
-        profileTweetsLabel.text = numberFormatter.stringFromNumber(user.tweetsCount)
-        profileFollowingLabel.text = numberFormatter.stringFromNumber(user.following)
-        profileFollowersLabel.text = numberFormatter.stringFromNumber(user.followers)
-        profileTaglineLabel.text = user.tagline as? String
-        if let bannerUrl = user.bannerImageUrl {
-           profileHeaderImageView.setImageWithURL(bannerUrl)
-        }
         
         loadProfileTimeline()
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
+        
+        // Set up header
+        let nib = UINib(nibName: "UserHeader", bundle: nil)
+        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "UserHeader")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -73,6 +55,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     //TABLEVIEW
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let profileTweets = profileTweets {
             return profileTweets.count
@@ -83,13 +68,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCell") as! ProfileTableViewCell
         let profileTweet = profileTweets![indexPath.row]
-        profileNameLabel.text = user.name as? String
-        profileUsernameLabel.text = "@\(user.screenname!)"
-        profileImageView.setImageWithURL(user.profileUrl!)
 
-        cell.profileTimelineImageView.image = profileImageView.image
-        cell.profileTimelineNameLabel.text = profileNameLabel.text
-        cell.profileTimelineUsernameLabel.text = profileUsernameLabel.text
+        cell.profileTimelineImageView.layer.borderWidth = 0
+        cell.profileTimelineImageView.layer.cornerRadius = cell.profileTimelineImageView.frame.height/10
+        cell.profileTimelineImageView.clipsToBounds = true
+        cell.profileTimelineImageView.setImageWithURL(user.profileUrl!)
+        
+        cell.profileTimelineNameLabel.text = user.name as? String
+        cell.profileTimelineUsernameLabel.text = "@\(user.screenname!)"
         
         cell.profileTimelineTextLabel.text = profileTweet.text as? String
         cell.profileTimelineRetweetLabel.text = String(profileTweet.retweetCount)
@@ -127,14 +113,37 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         return cell
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier("UserHeader") as! UserHeader
+        let header = cell
+        
+        if let bannerUrl = user.bannerImageUrl {
+            cell.userHeaderImageView.setImageWithURL(bannerUrl)
+        }
+        
+        cell.userBackgroundImageView.layer.borderWidth = 0
+        cell.userBackgroundImageView.layer.cornerRadius = cell.userBackgroundImageView.frame.height/10
+        cell.userBackgroundImageView.clipsToBounds = true
+        
+        cell.userImageView.layer.borderWidth = 0
+        cell.userImageView.layer.cornerRadius = cell.userImageView.frame.height/10
+        cell.userImageView.clipsToBounds = true
+        cell.userImageView.setImageWithURL(user.profileUrl!)
+        
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        
+        header.userNameLabel.text = user.name as? String
+        header.userUsernameLabel.text = "@\(user.screenname!)"
+        header.userImageView.setImageWithURL(user.profileUrl!)
+        header.userTweetsLabel.text = numberFormatter.stringFromNumber(user.tweetsCount)
+        header.userFollowingLabel.text = numberFormatter.stringFromNumber(user.following)
+        header.userFollowersLabel.text = numberFormatter.stringFromNumber(user.followers)
+        header.userTaglineLabel.text = user.tagline as? String
+        
+        return cell
     }
-    */
-
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 300
+    }
 }

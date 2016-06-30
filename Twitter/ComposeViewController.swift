@@ -28,6 +28,11 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
             composeUsernameLabel.text = "@\(screenname)"
         }
         composeNameLabel.text = user!.name as? String
+        
+        composeImageView.layer.borderWidth = 0
+        composeImageView.layer.cornerRadius = composeImageView.frame.height/10
+        composeImageView.clipsToBounds = true
+
         if let imageUrl = user!.profileUrl {
             if let data = NSData(contentsOfURL: imageUrl) {
                 composeImageView.image = UIImage(data: data)

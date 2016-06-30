@@ -32,6 +32,10 @@ class ReplyViewController: UIViewController, UITextViewDelegate {
             replyUsernameLabel.text = "@\(screenname)"
         }
         replyNameLabel.text = user!.name as? String
+        
+        replyImageView.layer.borderWidth = 0
+        replyImageView.layer.cornerRadius = replyImageView.frame.height/10
+        replyImageView.clipsToBounds = true
         if let imageUrl = user!.profileUrl {
             if let data = NSData(contentsOfURL: imageUrl) {
                 replyImageView.image = UIImage(data: data)

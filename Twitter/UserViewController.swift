@@ -12,17 +12,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     var userTweets: [Tweet]?
     var user: User!
     @IBOutlet weak var tableView: UITableView!
-
-    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userHeaderImageView: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userUsernameLabel: UILabel!
-    @IBOutlet weak var userTaglineLabel: UILabel!
-
-    @IBOutlet weak var userTweetsLabel: UILabel!
-    @IBOutlet weak var userFollowingLabel: UILabel!
-    @IBOutlet weak var userFollowersLabel: UILabel!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,26 +20,16 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
-
-        let numberFormatter = NSNumberFormatter()
-        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
-        
-        userNameLabel.text = user.name as? String
-        userUsernameLabel.text = "@\(user.screenname!)"
-        userImageView.setImageWithURL(user.profileUrl!)
-        userTweetsLabel.text = numberFormatter.stringFromNumber(user.tweetsCount)
-        userFollowingLabel.text = numberFormatter.stringFromNumber(user.following)
-        userFollowersLabel.text = numberFormatter.stringFromNumber(user.followers)
-        userTaglineLabel.text = user.tagline as? String
-        if let bannerUrl = user.bannerImageUrl {
-            userHeaderImageView.setImageWithURL(bannerUrl)
-        }
         
         loadUserTimeline()
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
+        
+        // Set up header
+        let nib = UINib(nibName: "UserHeader", bundle: nil)
+        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "UserHeader")
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +55,9 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //TABLEVIEW
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let userTweets = userTweets {
             return userTweets.count
@@ -85,11 +68,13 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as! UserTableViewCell
         let userTweet = userTweets![indexPath.row]
-
-        cell.userTimelineNameLabel.text = userNameLabel.text
-        cell.userTimelineUsernameLabel.text = userUsernameLabel.text
-        cell.userTimelineImageView.image = userImageView.image
         
+        cell.userTimelineImageView.layer.borderWidth = 0
+        cell.userTimelineImageView.layer.cornerRadius = cell.userTimelineImageView.frame.height/10
+        cell.userTimelineImageView.clipsToBounds = true
+        cell.userTimelineImageView.setImageWithURL(user.profileUrl!)
+        cell.userTimelineNameLabel.text = user.name as? String
+        cell.userTimelineUsernameLabel.text = "@\(user.screenname)"
         cell.userTimelineTextLabel.text = userTweet.text as? String
         cell.userTimelineRetweetLabel.text = String(userTweet.retweetCount)
         cell.userTimelineLikeLabel.text = String(userTweet.favoritesCount)
@@ -126,6 +111,40 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         return cell
     }
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier("UserHeader") as! UserHeader
+        let header = cell
+        
+        if let bannerUrl = user.bannerImageUrl {
+            cell.userHeaderImageView.setImageWithURL(bannerUrl)
+        }
+        
+        cell.userBackgroundImageView.layer.borderWidth = 0
+        cell.userBackgroundImageView.layer.cornerRadius = cell.userBackgroundImageView.frame.height/10
+        cell.userBackgroundImageView.clipsToBounds = true
+        
+        cell.userImageView.layer.borderWidth = 0
+        cell.userImageView.layer.cornerRadius = cell.userImageView.frame.height/10
+        cell.userImageView.clipsToBounds = true
+        cell.userImageView.setImageWithURL(user.profileUrl!)
+        
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        
+        header.userNameLabel.text = user.name as? String
+        header.userUsernameLabel.text = "@\(user.screenname!)"
+        header.userImageView.setImageWithURL(user.profileUrl!)
+        header.userTweetsLabel.text = numberFormatter.stringFromNumber(user.tweetsCount)
+        header.userFollowingLabel.text = numberFormatter.stringFromNumber(user.following)
+        header.userFollowersLabel.text = numberFormatter.stringFromNumber(user.followers)
+        header.userTaglineLabel.text = user.tagline as? String
+        
+        return cell
+    }
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 300
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let replyVC = segue.destinationViewController as? ReplyViewController {
             let button = sender as! UIButton

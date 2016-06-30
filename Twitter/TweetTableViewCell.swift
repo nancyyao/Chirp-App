@@ -70,6 +70,9 @@ class TweetTableViewCell: UITableViewCell {
             //TwitterClient.sharedInstance.unretweet(currentTweet.tweetID)
         }
     }
-    
+    @IBAction func onReplyButton(sender: AnyObject) {
+        print("hit reply")
+    }
+
     
 }

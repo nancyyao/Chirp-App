@@ -27,6 +27,10 @@ class DetailViewController: UIViewController {
         if let user = detailTweet.tweetUser {
             detailUsernameLabel.text = "@\(user.screenname!)"
             detailNameLabel.text = user.name as? String
+            
+            detailImageView.layer.borderWidth = 0
+            detailImageView.layer.cornerRadius = detailImageView.frame.height/10
+            detailImageView.clipsToBounds = true
             detailImageView.setImageWithURL(user.profileUrl!)
         }
         detailRetweetLabel.text = String(detailTweet.retweetCount)
@@ -70,6 +74,7 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func onDetailReplyButton(sender: AnyObject) {
+        print("hit detail reply")
     }
     @IBAction func onDetailRetweetButton(sender: AnyObject) {
         if detailTweet.retweeted == false { //not yet retweeted
