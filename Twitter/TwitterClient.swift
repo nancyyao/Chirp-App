@@ -49,6 +49,8 @@ class TwitterClient: BDBOAuth1SessionManager {
         
     }
     func homeTimeline(dictionary: NSDictionary, success: ([Tweet]) -> (), failure: (NSError) -> ()) {
+        self.printRateStatuses()
+        
         GET("1.1/statuses/home_timeline.json", parameters: dictionary, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
             let dictionaries = response as! [NSDictionary]
             let tweets = Tweet.tweetsWithArray(dictionaries)
@@ -159,4 +161,61 @@ class TwitterClient: BDBOAuth1SessionManager {
      
      }
      */
+    
+    func getRateStatuses(handler: ((response: NSDictionary?, error: NSError?) -> Void)) {
+        GET("1.1/application/rate_limit_status.json?resources=statuses", parameters:nil,
+            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                if let dict = response as? NSDictionary {
+                    handler(response:dict, error:nil)
+                }
+            }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                handler(response:nil, error:error)
+        })
+    }
+    
+    private static let ratePrintLabels = [
+        "/statuses/home_timeline":"home timeline",
+        "/statuses/retweets/:id":"retweet",
+        "/statuses/user_timeline":"user timeline"]
+    
+    func printRateStatuses() {
+        self.getRateStatuses { (response, error) in
+            if let error = error {
+                print("received error getting rate limits")
+            }else{
+                if let response = response {
+                    for (key,value) in TwitterClient.ratePrintLabels {
+                        if let resourcesDict = response["resources"] as? NSDictionary {
+                            if let statusDict = resourcesDict["statuses"] as? NSDictionary {
+                                if let keyDict = statusDict[key] as? NSDictionary {
+                                    let limit = keyDict["limit"] as! Int
+                                    let remaining = keyDict["remaining"] as! Int
+                                    let epoch = keyDict["reset"] as! Int
+                                    let resetDate = NSDate(timeIntervalSince1970: Double(epoch))
+                                    print("\(value) rate: limit=\(limit), remaining=\(remaining); expires in \(TwitterClient.formatIntervalElapsed(resetDate.timeIntervalSinceNow))")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private static var elapsedTimeFormatter: NSDateComponentsFormatter = {
+        let formatter = NSDateComponentsFormatter()
+        formatter.unitsStyle = NSDateComponentsFormatterUnitsStyle.Abbreviated
+        formatter.collapsesLargestUnit = true
+        formatter.maximumUnitCount = 1
+        return formatter
+    }()
+    
+    static func formatTimeElapsed(sinceDate: NSDate) -> String {
+        let interval = NSDate().timeIntervalSinceDate(sinceDate)
+        return elapsedTimeFormatter.stringFromTimeInterval(interval)!
+    }
+    
+    static func formatIntervalElapsed(interval: NSTimeInterval) -> String {
+        return elapsedTimeFormatter.stringFromTimeInterval(interval)!
+    }
 }

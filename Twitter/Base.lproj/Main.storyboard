@@ -138,9 +138,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UrH-RM-dYJ" userLabel="LikeButton">
-                                                    <rect key="frame" x="155" y="95" width="15" height="20"/>
+                                                    <rect key="frame" x="164.5" y="90" width="19" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="WS1-1H-Am6"/>
+                                                        <constraint firstAttribute="height" constant="25" id="WS1-1H-Am6"/>
                                                         <constraint firstAttribute="width" secondItem="UrH-RM-dYJ" secondAttribute="height" multiplier="3:4" id="yAW-8C-5H5"/>
                                                     </constraints>
                                                     <state key="normal" image="likeDefault"/>
@@ -155,10 +155,10 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pf9-m9-4Qt" userLabel="ReplyButton">
-                                                    <rect key="frame" x="56" y="95" width="18" height="20"/>
+                                                    <rect key="frame" x="56" y="90" width="22.5" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="VLX-7D-l9P"/>
-                                                        <constraint firstAttribute="height" constant="20" id="gkf-Zv-NPD"/>
+                                                        <constraint firstAttribute="height" constant="25" id="gkf-Zv-NPD"/>
                                                         <constraint firstAttribute="width" secondItem="Pf9-m9-4Qt" secondAttribute="height" multiplier="65:72" id="ikY-5L-XY1"/>
                                                     </constraints>
                                                     <state key="normal" image="commentDefault"/>
@@ -172,11 +172,11 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qE3-Ko-q2D" userLabel="RetweetButton">
-                                                    <rect key="frame" x="98" y="95" width="21" height="20"/>
+                                                    <rect key="frame" x="102.5" y="90" width="26" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="AKq-07-6zt"/>
                                                         <constraint firstAttribute="height" constant="72" id="ArT-ST-UBO"/>
-                                                        <constraint firstAttribute="height" constant="20" id="Nrk-DY-6BK"/>
+                                                        <constraint firstAttribute="height" constant="25" id="Nrk-DY-6BK"/>
                                                         <constraint firstAttribute="width" constant="20" id="Pmx-hp-eTb"/>
                                                         <constraint firstAttribute="width" secondItem="qE3-Ko-q2D" secondAttribute="height" multiplier="25:24" id="Xs7-cX-Xba"/>
                                                     </constraints>
@@ -195,14 +195,14 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1k-RN-5xb" userLabel="retweetLabel">
-                                                    <rect key="frame" x="123" y="98" width="8" height="14.5"/>
+                                                    <rect key="frame" x="132.5" y="95.5" width="8" height="14.5"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="retweetLabel"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDT-kW-sig" userLabel="likeLabel">
-                                                    <rect key="frame" x="174" y="98" width="8" height="14.5"/>
+                                                    <rect key="frame" x="187.5" y="95.5" width="8" height="14.5"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="likeLabel"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="8" id="qO5-4v-hbZ"/>
@@ -363,9 +363,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfe-Bh-hsK" userLabel="LikeButton">
-                                                    <rect key="frame" x="155" y="89" width="15" height="20"/>
+                                                    <rect key="frame" x="164.5" y="84" width="19" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="AFu-N4-nKh"/>
+                                                        <constraint firstAttribute="height" constant="25" id="AFu-N4-nKh"/>
                                                         <constraint firstAttribute="width" secondItem="dfe-Bh-hsK" secondAttribute="height" multiplier="3:4" id="Jdf-YM-PCz"/>
                                                     </constraints>
                                                     <state key="normal" image="likeDefault"/>
@@ -375,11 +375,11 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHk-k0-vg0" userLabel="RetweetButton">
-                                                    <rect key="frame" x="98" y="89" width="21" height="20"/>
+                                                    <rect key="frame" x="102.5" y="84" width="26" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="72" id="0O9-QQ-aLw"/>
                                                         <constraint firstAttribute="width" secondItem="LHk-k0-vg0" secondAttribute="height" multiplier="25:24" id="Otn-KA-vqz"/>
-                                                        <constraint firstAttribute="height" constant="20" id="QJY-eb-yKn"/>
+                                                        <constraint firstAttribute="height" constant="25" id="QJY-eb-yKn"/>
                                                         <constraint firstAttribute="width" constant="20" id="ZcT-aI-Kw2"/>
                                                         <constraint firstAttribute="height" constant="20" id="xUi-Y6-cJ4"/>
                                                     </constraints>
@@ -397,9 +397,9 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCR-a6-3wH" userLabel="ReplyButton">
-                                                    <rect key="frame" x="56" y="89" width="18" height="20"/>
+                                                    <rect key="frame" x="56" y="84" width="22.5" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="4fE-IB-PBk"/>
+                                                        <constraint firstAttribute="height" constant="25" id="4fE-IB-PBk"/>
                                                         <constraint firstAttribute="width" secondItem="VCR-a6-3wH" secondAttribute="height" multiplier="65:72" id="Y7j-wz-rTc"/>
                                                     </constraints>
                                                     <state key="normal" image="commentDefault"/>
@@ -409,14 +409,14 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yh7-8C-qvV" userLabel="retweetLabel">
-                                                    <rect key="frame" x="123" y="91.5" width="8" height="14.5"/>
+                                                    <rect key="frame" x="132.5" y="89" width="8" height="14.5"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="retweetLabel"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ac6-GS-huI" userLabel="likeLabel">
-                                                    <rect key="frame" x="174" y="92.5" width="8" height="14.5"/>
+                                                    <rect key="frame" x="187.5" y="90" width="8" height="14.5"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="likeLabel"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -705,10 +705,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySq-KJ-rcH" userLabel="DetailReplyButton">
-                                <rect key="frame" x="36" y="287" width="18" height="20"/>
+                                <rect key="frame" x="36" y="287" width="22.5" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ySq-KJ-rcH" secondAttribute="height" multiplier="65:72" id="Whi-Pn-3RB"/>
-                                    <constraint firstAttribute="height" constant="20" id="bJK-7U-KY1"/>
+                                    <constraint firstAttribute="height" constant="25" id="bJK-7U-KY1"/>
                                 </constraints>
                                 <state key="normal" image="commentDefault"/>
                                 <connections>
@@ -717,10 +717,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tc0-ir-dbk" userLabel="DetailRetweetButton">
-                                <rect key="frame" x="114" y="287" width="21" height="20"/>
+                                <rect key="frame" x="118.5" y="287" width="26" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="35x-Kn-iEK"/>
-                                    <constraint firstAttribute="height" constant="20" id="bDN-1k-b4I"/>
+                                    <constraint firstAttribute="height" constant="25" id="bDN-1k-b4I"/>
                                     <constraint firstAttribute="width" constant="20" id="cj1-X0-xWA"/>
                                     <constraint firstAttribute="width" secondItem="Tc0-ir-dbk" secondAttribute="height" multiplier="25:24" id="e8s-EN-VAf"/>
                                     <constraint firstAttribute="height" constant="72" id="q6b-lY-YiE"/>
@@ -739,10 +739,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zjb-aJ-nC4" userLabel="DetailLikeButton">
-                                <rect key="frame" x="195" y="287" width="15" height="20"/>
+                                <rect key="frame" x="204.5" y="287" width="19" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Zjb-aJ-nC4" secondAttribute="height" multiplier="3:4" id="2AI-Tz-tpO"/>
-                                    <constraint firstAttribute="height" constant="20" id="S4a-cx-rAF"/>
+                                    <constraint firstAttribute="height" constant="25" id="S4a-cx-rAF"/>
                                 </constraints>
                                 <state key="normal" image="likeDefault"/>
                                 <state key="selected" image="likePressed"/>
@@ -990,9 +990,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleAspectFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huN-He-v7Q" userLabel="LikeButton">
-                                                    <rect key="frame" x="155" y="99" width="15" height="20"/>
+                                                    <rect key="frame" x="164.5" y="94" width="19" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Zyy-ZE-OVv"/>
+                                                        <constraint firstAttribute="height" constant="25" id="Zyy-ZE-OVv"/>
                                                         <constraint firstAttribute="width" secondItem="huN-He-v7Q" secondAttribute="height" multiplier="3:4" id="dhZ-tw-fwS"/>
                                                     </constraints>
                                                     <state key="normal" image="likeDefault"/>
@@ -1002,9 +1002,9 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klE-e6-oU4" userLabel="RetweetButton">
-                                                    <rect key="frame" x="98" y="99" width="21" height="20"/>
+                                                    <rect key="frame" x="102.5" y="94" width="26" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="IBg-bI-Yk0"/>
+                                                        <constraint firstAttribute="height" constant="25" id="IBg-bI-Yk0"/>
                                                         <constraint firstAttribute="height" constant="20" id="JyZ-FW-0QG"/>
                                                         <constraint firstAttribute="height" constant="72" id="RKe-Fe-ddw"/>
                                                         <constraint firstAttribute="width" secondItem="klE-e6-oU4" secondAttribute="height" multiplier="25:24" id="mTl-E3-5Tf"/>
@@ -1024,16 +1024,16 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qW8-M1-CSm" userLabel="retweetLabel">
-                                                    <rect key="frame" x="123" y="102" width="8" height="14.5"/>
+                                                    <rect key="frame" x="132.5" y="99.5" width="8" height="14.5"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="retweetLabel"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5QL-eq-hfF" userLabel="ReplyButton">
-                                                    <rect key="frame" x="56" y="99" width="18" height="20"/>
+                                                    <rect key="frame" x="56" y="94" width="22.5" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="hXH-TS-u8L"/>
+                                                        <constraint firstAttribute="height" constant="25" id="hXH-TS-u8L"/>
                                                         <constraint firstAttribute="height" constant="20" id="jHA-St-8Lx"/>
                                                         <constraint firstAttribute="width" secondItem="5QL-eq-hfF" secondAttribute="height" multiplier="65:72" id="yOe-Jb-xdD"/>
                                                     </constraints>
@@ -1084,7 +1084,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zu3-AE-FQF" userLabel="likeLabel">
-                                                    <rect key="frame" x="174" y="102" width="8" height="14.5"/>
+                                                    <rect key="frame" x="187.5" y="99.5" width="8" height="14.5"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="likeLabel"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1213,7 +1213,7 @@
         <!--Home-->
         <scene sceneID="CeQ-0M-lwP">
             <objects>
-                <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="vDc-om-9Bw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="vDc-om-9Bw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="homeIcon" id="mey-2e-BHM"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -1360,6 +1360,6 @@
         <image name="retweetPressed" width="75" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aAb-WQ-RCm"/>
+        <segue reference="roU-SM-82N"/>
     </inferredMetricsTieBreakers>
 </document>
