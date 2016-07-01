@@ -34,6 +34,9 @@
 		F98D984D1D26DC74000F9816 /* RefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F98D984C1D26DC74000F9816 /* RefreshView.xib */; };
 		F98D984F1D26DDA7000F9816 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D984E1D26DDA7000F9816 /* RefreshView.swift */; };
 		F98D98511D26E67B000F9816 /* TweetsRefresh.xib in Resources */ = {isa = PBXBuildFile; fileRef = F98D98501D26E67B000F9816 /* TweetsRefresh.xib */; };
+		F98D98531D271DDF000F9816 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D98521D271DDF000F9816 /* MessagesViewController.swift */; };
+		F98D98551D272833000F9816 /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D98541D272833000F9816 /* MentionsViewController.swift */; };
+		F98D98571D2728BB000F9816 /* MentionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D98561D2728BB000F9816 /* MentionsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +95,9 @@
 		F98D984C1D26DC74000F9816 /* RefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshView.xib; sourceTree = "<group>"; };
 		F98D984E1D26DDA7000F9816 /* RefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		F98D98501D26E67B000F9816 /* TweetsRefresh.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetsRefresh.xib; sourceTree = "<group>"; };
+		F98D98521D271DDF000F9816 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		F98D98541D272833000F9816 /* MentionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
+		F98D98561D2728BB000F9816 /* MentionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsTableViewCell.swift; sourceTree = "<group>"; };
 		FCE8B26059DF42940E41094D /* Pods_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -221,6 +227,8 @@
 				F91025531D2380F5001B4550 /* UserViewController.swift */,
 				F91025551D23A610001B4550 /* ProfileViewController.swift */,
 				F910255B1D25036E001B4550 /* ReplyViewController.swift */,
+				F98D98521D271DDF000F9816 /* MessagesViewController.swift */,
+				F98D98541D272833000F9816 /* MentionsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -244,6 +252,7 @@
 				F91025591D24610F001B4550 /* ProfileTableViewCell.swift */,
 				F98D984E1D26DDA7000F9816 /* RefreshView.swift */,
 				F98D98501D26E67B000F9816 /* TweetsRefresh.xib */,
+				F98D98561D2728BB000F9816 /* MentionsTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -517,6 +526,7 @@
 				F91025521D2371C3001B4550 /* ComposeViewController.swift in Sources */,
 				F91025541D2380F5001B4550 /* UserViewController.swift in Sources */,
 				F91025071D21CF6A001B4550 /* User.swift in Sources */,
+				F98D98531D271DDF000F9816 /* MessagesViewController.swift in Sources */,
 				F91025091D21CF72001B4550 /* Tweet.swift in Sources */,
 				F91025581D244606001B4550 /* UserTableViewCell.swift in Sources */,
 				F91025021D21C368001B4550 /* LoginViewController.swift in Sources */,
@@ -524,6 +534,8 @@
 				F910250D1D21E0E5001B4550 /* TweetsViewController.swift in Sources */,
 				F910255C1D25036E001B4550 /* ReplyViewController.swift in Sources */,
 				F91025561D23A610001B4550 /* ProfileViewController.swift in Sources */,
+				F98D98551D272833000F9816 /* MentionsViewController.swift in Sources */,
+				F98D98571D2728BB000F9816 /* MentionsTableViewCell.swift in Sources */,
 				F910250B1D21D5EA001B4550 /* TwitterClient.swift in Sources */,
 				F910255A1D24610F001B4550 /* ProfileTableViewCell.swift in Sources */,
 				F91024D41D21BBCA001B4550 /* AppDelegate.swift in Sources */,

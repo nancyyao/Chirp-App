@@ -23,6 +23,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+
         tableView.dataSource = self
         tableView.delegate = self
         tableView.estimatedRowHeight = 200

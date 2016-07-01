@@ -79,7 +79,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         customView.frame = refreshControl.bounds
         twitterLogo = customView.viewWithTag(1) as! UIImageView
         refreshControl.addSubview(customView)
-        
     }
     func animateRefresh(refreshControl: UIRefreshControl) {
         print("animating")

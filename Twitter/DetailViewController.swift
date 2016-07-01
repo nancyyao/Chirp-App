@@ -25,6 +25,8 @@ class DetailViewController: UIViewController, TTTAttributedLabelDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+
         if let user = detailTweet.tweetUser {
             detailUsernameLabel.text = "@\(user.screenname!)"
             detailNameLabel.text = user.name as? String

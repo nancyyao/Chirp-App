@@ -59,6 +59,16 @@ class TwitterClient: BDBOAuth1SessionManager {
                 failure(error)
         })
     }
+    func mentions(success: ([Tweet]) -> (), failure: (NSError) -> ()) {
+        GET("1.1/statuses/mentions_timeline.json", parameters: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) in
+            let dictionaries = response as! [NSDictionary]
+            let mentions = Tweet.tweetsWithArray(dictionaries)
+            success(mentions)
+        }) { (task: NSURLSessionDataTask?, error: NSError) in
+                print("error: \(error.localizedDescription)")
+        }
+    }
+    
     func userTimeline(screenname: String, success: ([Tweet]) -> (), failure: (NSError) -> ()) {
         let userDictionary: NSDictionary = [
             "screen_name": screenname

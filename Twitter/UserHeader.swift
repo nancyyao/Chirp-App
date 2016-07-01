@@ -26,8 +26,5 @@ class UserHeader: UITableViewHeaderFooterView {
         // Drawing code
     }
     */
-    @IBAction func onLogOut(sender: AnyObject) {
-        TwitterClient.sharedInstance.logout()
-    }
 
 }
