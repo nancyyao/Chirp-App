@@ -1,6 +1,6 @@
-# Project 4 - *Name of App Here*
+# Project 4 - Chirp
 
-**Name of your app** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
+Chirp is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
 Time spent: 21 hours spent in total
 
