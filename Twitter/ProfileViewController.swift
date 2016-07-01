@@ -10,7 +10,6 @@ import UIKit
 import TTTAttributedLabel
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TTTAttributedLabelDelegate {
-    @IBOutlet weak var profileHeaderImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     var profileTweets: [Tweet]!
     let user = User.currentUser! as User
@@ -21,7 +20,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
-        
         
         loadProfileTimeline()
         
@@ -152,7 +150,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 300
+        return 310
+    }
+    
+    //LOG OUT
+    @IBAction func onLogOut(sender: UIBarButtonItem) {
+        TwitterClient.sharedInstance.logout()
     }
     
     //LINKS

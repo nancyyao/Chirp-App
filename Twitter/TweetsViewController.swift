@@ -161,7 +161,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     animateRefresh(refreshControl)
                 }
             }
-            
         }
     }
     func loadMoreData() {

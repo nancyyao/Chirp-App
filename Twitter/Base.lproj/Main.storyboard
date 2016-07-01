@@ -97,7 +97,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileCell" rowHeight="124" id="Am1-j5-Psk" customClass="ProfileTableViewCell" customModule="Twitter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49.5" width="320" height="124"/>
+                                        <rect key="frame" x="0.0" y="113.5" width="320" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Am1-j5-Psk" id="yl5-pY-sQA">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="123.5"/>
@@ -295,7 +295,14 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Me" id="BRV-ch-kEZ"/>
+                    <navigationItem key="navigationItem" title="Me" id="BRV-ch-kEZ">
+                        <barButtonItem key="leftBarButtonItem" image="logout" id="Csi-wq-GhS">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onLogOut:" destination="BXt-Yf-bxA" id="2g0-x1-zot"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="7Is-2B-V8s" id="otu-7T-dz7"/>
@@ -980,7 +987,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="128" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="y8L-Dc-bB2">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="128" id="jgV-PB-7nt" customClass="UserTableViewCell" customModule="Twitter" customModuleProvider="target">
@@ -1509,13 +1515,17 @@
         <!--Me Navigation-->
         <scene sceneID="QSE-fL-oSA">
             <objects>
-                <navigationController title="Me Navigation" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="qe9-nO-HnD" sceneMemberID="viewController">
+                <navigationController title="Me Navigation" automaticallyAdjustsScrollViewInsets="NO" id="qe9-nO-HnD" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Me" image="profileIcon" id="lJC-7Y-RFX"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CsU-f1-uK7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.022205023090000001" green="0.5742766399" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -14,17 +14,11 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     var userTweets: [Tweet]?
     var user: User!
     @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var headerImageView: UIImageView!
-    
-//    var refreshControl: UIRefreshControl!
-    
-    var customView: UIView!
-    var refreshImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
-
+    
         tableView.dataSource = self
         tableView.delegate = self
         tableView.estimatedRowHeight = 200
@@ -32,26 +26,21 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         loadUserTimeline()
         
-        //refresh control
         let refreshControl = UIRefreshControl()
-        //refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x, refreshControl.bounds.origin.y, refreshControl.bounds.size.width, 100)
-//        refreshControl.backgroundColor = UIColor.clearColor()
-//        refreshControl.tintColor = UIColor.clearColor()
+
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
-
-//        loadCustomRefreshContents(refreshControl)
-
+        
         // Set up header
         let nib = UINib(nibName: "UserHeader", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "UserHeader")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     //LOAD DATA
     func loadUserTimeline() {
         TwitterClient.sharedInstance.userTimeline(user.screenname! as String, success: { (tweets: [Tweet]) in
@@ -59,7 +48,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.tableView.reloadData()
             print("loaded user timeline")
         }) { (error: NSError) in
-                print("error: \(error.localizedDescription)")
+            print("error: \(error.localizedDescription)")
         }
     }
     
@@ -68,19 +57,6 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         loadUserTimeline()
         refreshControl.endRefreshing()
     }
-//    func loadCustomRefreshContents(refreshControl: UIRefreshControl) {
-//        let refreshView = NSBundle.mainBundle().loadNibNamed("RefreshView", owner: self, options: nil)
-//        customView = refreshView[0] as! UIView
-//        customView.frame = refreshControl.bounds
-//        refreshImageView = customView.viewWithTag(1) as! UIImageView
-//        
-//        if let bannerUrl = user.bannerImageUrl {
-//            refreshImageView.setImageWithURL(bannerUrl)
-//        }
-//        
-//        refreshControl.addSubview(customView)
-//        
-//    }
     
     //TABLEVIEW
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -108,10 +84,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.userTimelineImageView.layer.cornerRadius = cell.userTimelineImageView.frame.height/10
         cell.userTimelineImageView.clipsToBounds = true
         cell.userTimelineImageView.setImageWithURL(user.profileUrl!)
-        if let name = user.name as? String {
-            cell.userTimelineNameLabel.text = name
-        }
-        cell.userTimelineUsernameLabel.text = "@\(user.screenname)"
+        cell.userTimelineNameLabel.text = user.name as? String
+        cell.userTimelineUsernameLabel.text = "@\(user.screenname!)"
         cell.userTimelineTextLabel.text = userTweet.text as? String
         cell.userTimelineRetweetLabel.text = String(userTweet.retweetCount)
         cell.userTimelineLikeLabel.text = String(userTweet.favoritesCount)
@@ -179,7 +153,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 300
+        return 310
     }
     
     //LINKS
@@ -202,5 +176,5 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             replyVC.replyId = replyTweet.tweetID as Int!
         }
     }
-
+    
 }

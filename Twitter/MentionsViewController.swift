@@ -13,6 +13,10 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     var mentions: [Tweet]!
     
+    var customView: UIView!
+    var twitterLogo: UIImageView!
+    var isAnimating = false
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +27,11 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
         
         loadMentions()
         
-        let refreshControl = UIRefreshControl()
+        refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
+        
+        loadCustomRefreshContents(refreshControl)
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,6 +43,40 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
     func refreshControlAction(refreshControl: UIRefreshControl) {
         loadMentions()
         refreshControl.endRefreshing()
+    }
+    func loadCustomRefreshContents(refreshControl: UIRefreshControl) {
+        let refreshView = NSBundle.mainBundle().loadNibNamed("TweetsRefresh", owner: self, options: nil)
+        customView = refreshView[0] as! UIView
+        customView.frame = refreshControl.bounds
+        twitterLogo = customView.viewWithTag(1) as! UIImageView
+        refreshControl.addSubview(customView)
+    }
+    func animateRefresh(refreshControl: UIRefreshControl) {
+        print("animating")
+        isAnimating = true
+        var count = 1.0
+        UIView.animateWithDuration(0.6, animations: {
+            self.twitterLogo.transform = CGAffineTransformMakeRotation(CGFloat(count * M_PI))
+            self.twitterLogo.transform = CGAffineTransformMakeScale(1.2, 1.2)
+            }, completion: { (finished) -> Void in
+                UIView.animateWithDuration(0.6, animations: {
+                    count = count + 1
+                    self.twitterLogo.transform = CGAffineTransformIdentity
+                    if refreshControl.refreshing {
+                        self.animateRefresh(refreshControl)
+                    }
+                    else {
+                        self.isAnimating = false
+                    }
+                })
+        })
+    }
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            if !isAnimating {
+                animateRefresh(refreshControl)
+            }
+        }
     }
     
     //LOAD DATA
@@ -80,7 +120,7 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.mentionTextLabel.text = mention.text as? String
         cell.mentionRetweetLabel.text = String(mention.retweetCount)
         cell.mentionLikeLabel.text = String(mention.favoritesCount)
-
+        
         if let timestamp = mention.timestamp {
             let currentTime = NSDate()
             let timeInSeconds = currentTime.timeIntervalSinceDate(timestamp)
