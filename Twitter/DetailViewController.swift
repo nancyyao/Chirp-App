@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import TTTAttributedLabel
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, TTTAttributedLabelDelegate {
     var detailTweet: Tweet!
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailNameLabel: UILabel!
@@ -16,7 +17,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTimeLabel: UILabel!
     @IBOutlet weak var detailRetweetLabel: UILabel!
     @IBOutlet weak var detailLikeLabel: UILabel!
-    @IBOutlet weak var detailTextLabel: UILabel!
+    @IBOutlet weak var detailTextLabel: TTTAttributedLabel!
     
     @IBOutlet weak var detailReplyButton: UIButton!
     @IBOutlet weak var detailRetweetButton: UIButton!
@@ -33,6 +34,13 @@ class DetailViewController: UIViewController {
             detailImageView.clipsToBounds = true
             detailImageView.setImageWithURL(user.profileUrl!)
         }
+        let linkColor = UIColor.blueColor()
+        let linkActiveColor = UIColor.redColor()
+        detailTextLabel.delegate = self
+        detailTextLabel.linkAttributes = [kCTForegroundColorAttributeName : linkColor,kCTUnderlineStyleAttributeName : NSNumber(bool: true)]
+        detailTextLabel.activeLinkAttributes = [kCTForegroundColorAttributeName : linkActiveColor]
+        detailTextLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
+        
         detailRetweetLabel.text = String(detailTweet.retweetCount)
         detailLikeLabel.text = String(detailTweet.favoritesCount)
         detailTextLabel.text = detailTweet.text as? String
@@ -116,6 +124,13 @@ class DetailViewController: UIViewController {
         self.performSegueWithIdentifier("userSegue", sender: nil)
     }
     
+    //LINKS
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        print("pressed link")
+        UIApplication.sharedApplication().openURL(url)
+    }
+    
+    //PASS DATA
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let userVC = segue.destinationViewController as? UserViewController {
             userVC.user = detailTweet.tweetUser! as User

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import TTTAttributedLabel
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TTTAttributedLabelDelegate {
     @IBOutlet weak var profileHeaderImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     var profileTweets: [Tweet]!
@@ -69,6 +70,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCell") as! ProfileTableViewCell
         let profileTweet = profileTweets![indexPath.row]
 
+        let linkColor = UIColor.blueColor()
+        let linkActiveColor = UIColor.redColor()
+        cell.profileTimelineTextLabel.delegate = self
+        cell.profileTimelineTextLabel.linkAttributes = [kCTForegroundColorAttributeName : linkColor,kCTUnderlineStyleAttributeName : NSNumber(bool: true)]
+        cell.profileTimelineTextLabel.activeLinkAttributes = [kCTForegroundColorAttributeName : linkActiveColor]
+        cell.profileTimelineTextLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
+        
         cell.profileTimelineImageView.layer.borderWidth = 0
         cell.profileTimelineImageView.layer.cornerRadius = cell.profileTimelineImageView.frame.height/10
         cell.profileTimelineImageView.clipsToBounds = true
@@ -145,5 +153,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 300
+    }
+    
+    //LINKS
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        print("pressed link")
+        UIApplication.sharedApplication().openURL(url)
     }
 }

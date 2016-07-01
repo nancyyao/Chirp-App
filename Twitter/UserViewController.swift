@@ -8,8 +8,9 @@
 
 import UIKit
 import AFNetworking
+import TTTAttributedLabel
 
-class UserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class UserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TTTAttributedLabelDelegate {
     var userTweets: [Tweet]?
     var user: User!
     @IBOutlet weak var tableView: UITableView!
@@ -94,11 +95,20 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as! UserTableViewCell
         let userTweet = userTweets![indexPath.row]
         
+        let linkColor = UIColor.blueColor()
+        let linkActiveColor = UIColor.redColor()
+        cell.userTimelineTextLabel.delegate = self
+        cell.userTimelineTextLabel.linkAttributes = [kCTForegroundColorAttributeName : linkColor,kCTUnderlineStyleAttributeName : NSNumber(bool: true)]
+        cell.userTimelineTextLabel.activeLinkAttributes = [kCTForegroundColorAttributeName : linkActiveColor]
+        cell.userTimelineTextLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
+        
         cell.userTimelineImageView.layer.borderWidth = 0
         cell.userTimelineImageView.layer.cornerRadius = cell.userTimelineImageView.frame.height/10
         cell.userTimelineImageView.clipsToBounds = true
         cell.userTimelineImageView.setImageWithURL(user.profileUrl!)
-        cell.userTimelineNameLabel.text = user.name as? String
+        if let name = user.name as? String {
+            cell.userTimelineNameLabel.text = name
+        }
         cell.userTimelineUsernameLabel.text = "@\(user.screenname)"
         cell.userTimelineTextLabel.text = userTweet.text as? String
         cell.userTimelineRetweetLabel.text = String(userTweet.retweetCount)
@@ -170,6 +180,13 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 300
     }
     
+    //LINKS
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        print("pressed link")
+        UIApplication.sharedApplication().openURL(url)
+    }
+    
+    //PASS DATA
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let replyVC = segue.destinationViewController as? ReplyViewController {
             let button = sender as! UIButton

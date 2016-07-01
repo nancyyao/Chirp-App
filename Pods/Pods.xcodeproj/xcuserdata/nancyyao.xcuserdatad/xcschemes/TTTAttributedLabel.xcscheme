@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '155323BB5223BF6BE44FC91F6E729523'
-               BlueprintName = 'SVPullToRefresh'
+               BlueprintIdentifier = '35CF75B9A52DA09ADF62D6D72D03CC34'
+               BlueprintName = 'TTTAttributedLabel'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SVPullToRefresh.framework'>
+               BuildableName = 'TTTAttributedLabel.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import SVPullToRefresh
+import TTTAttributedLabel
 
-class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TTTAttributedLabelDelegate {
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]!
     var isMoreDataLoading = false
@@ -99,7 +99,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.isAnimating = false
                     }
                 })
-            })
+        })
     }
     
     //INFINITE SCROLL
@@ -158,9 +158,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             if scrollView.contentOffset.y < 0 {
-                print("offset negative")
                 if !isAnimating {
-                    print("not currently animating, running animate")
                     animateRefresh(refreshControl)
                 }
             }
@@ -214,6 +212,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.tweetImageView.setImageWithURL(imageUrl)
             }
         }
+        let linkColor = UIColor.blueColor()
+        let linkActiveColor = UIColor.redColor()
+        cell.tweetTextLabel.delegate = self
+        cell.tweetTextLabel.linkAttributes = [kCTForegroundColorAttributeName : linkColor,kCTUnderlineStyleAttributeName : NSNumber(bool: true)]
+        cell.tweetTextLabel.activeLinkAttributes = [kCTForegroundColorAttributeName : linkActiveColor]
+        cell.tweetTextLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
+        
         
         cell.currentTweet = tweet
         cell.tweetTextLabel.text = tweet.text as? String
@@ -252,6 +257,12 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         return cell
+    }
+    
+    //LINKS
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        print("pressed link")
+        UIApplication.sharedApplication().openURL(url)
     }
     
     //PASS DATA

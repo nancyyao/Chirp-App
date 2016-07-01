@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import TTTAttributedLabel
 
 class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var profileTimelineImageView: UIImageView!
     @IBOutlet weak var profileTimelineNameLabel: UILabel!
     @IBOutlet weak var profileTimelineUsernameLabel: UILabel!
 
-    @IBOutlet weak var profileTimelineTextLabel: UILabel!
+    @IBOutlet weak var profileTimelineTextLabel: TTTAttributedLabel!
     @IBOutlet weak var profileTimelineTimeLabel: UILabel!
     @IBOutlet weak var profileTimelineRetweetLabel: UILabel!
     @IBOutlet weak var profileTimelineLikeLabel: UILabel!

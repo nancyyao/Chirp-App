@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import TTTAttributedLabel
 
 class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetUsernameLabel: UILabel!
     @IBOutlet weak var tweetTimeLabel: UILabel!
-    @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var tweetTextLabel: TTTAttributedLabel!
     @IBOutlet weak var tweetNameLabel: UILabel!
     @IBOutlet weak var tweetImageView: UIImageView!
     @IBOutlet weak var retweetLabel: UILabel!
@@ -73,6 +74,4 @@ class TweetTableViewCell: UITableViewCell {
     @IBAction func onReplyButton(sender: AnyObject) {
         print("hit reply")
     }
-
-    
 }
