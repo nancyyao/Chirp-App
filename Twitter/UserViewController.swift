@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import AFNetworking
 
-class UserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class UserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     var userTweets: [Tweet]?
     var user: User!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var userHeaderImageView: UIImageView!
+//    @IBOutlet weak var headerImageView: UIImageView!
+    
+//    var refreshControl: UIRefreshControl!
+    
+    var customView: UIView!
+    var refreshImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +29,16 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         loadUserTimeline()
         
+        //refresh control
         let refreshControl = UIRefreshControl()
+        //refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x, refreshControl.bounds.origin.y, refreshControl.bounds.size.width, 100)
+//        refreshControl.backgroundColor = UIColor.clearColor()
+//        refreshControl.tintColor = UIColor.clearColor()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
-        
+
+//        loadCustomRefreshContents(refreshControl)
+
         // Set up header
         let nib = UINib(nibName: "UserHeader", bundle: nil)
         tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "UserHeader")
@@ -53,6 +65,19 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         loadUserTimeline()
         refreshControl.endRefreshing()
     }
+//    func loadCustomRefreshContents(refreshControl: UIRefreshControl) {
+//        let refreshView = NSBundle.mainBundle().loadNibNamed("RefreshView", owner: self, options: nil)
+//        customView = refreshView[0] as! UIView
+//        customView.frame = refreshControl.bounds
+//        refreshImageView = customView.viewWithTag(1) as! UIImageView
+//        
+//        if let bannerUrl = user.bannerImageUrl {
+//            refreshImageView.setImageWithURL(bannerUrl)
+//        }
+//        
+//        refreshControl.addSubview(customView)
+//        
+//    }
     
     //TABLEVIEW
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

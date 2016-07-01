@@ -990,7 +990,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleAspectFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huN-He-v7Q" userLabel="LikeButton">
-                                                    <rect key="frame" x="164.5" y="94" width="19" height="25"/>
+                                                    <rect key="frame" x="164" y="94" width="19" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="Zyy-ZE-OVv"/>
                                                         <constraint firstAttribute="width" secondItem="huN-He-v7Q" secondAttribute="height" multiplier="3:4" id="dhZ-tw-fwS"/>
@@ -1002,7 +1002,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klE-e6-oU4" userLabel="RetweetButton">
-                                                    <rect key="frame" x="102.5" y="94" width="26" height="25"/>
+                                                    <rect key="frame" x="102" y="94" width="26" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="IBg-bI-Yk0"/>
                                                         <constraint firstAttribute="height" constant="20" id="JyZ-FW-0QG"/>
@@ -1024,7 +1024,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qW8-M1-CSm" userLabel="retweetLabel">
-                                                    <rect key="frame" x="132.5" y="99.5" width="8" height="14.5"/>
+                                                    <rect key="frame" x="132" y="99" width="8" height="14.5"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="retweetLabel"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1084,7 +1084,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zu3-AE-FQF" userLabel="likeLabel">
-                                                    <rect key="frame" x="187.5" y="99.5" width="8" height="14.5"/>
+                                                    <rect key="frame" x="187" y="99" width="8" height="14.5"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="likeLabel"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1188,15 +1188,20 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="y8L-Dc-bB2" firstAttribute="top" secondItem="rnC-mF-YXc" secondAttribute="bottom" id="Gv6-jr-CJZ"/>
                             <constraint firstItem="y8L-Dc-bB2" firstAttribute="top" secondItem="QB0-d7-hdx" secondAttribute="top" id="QWN-98-mGC"/>
                             <constraint firstAttribute="trailing" secondItem="y8L-Dc-bB2" secondAttribute="trailing" id="Riz-Br-dCC"/>
                             <constraint firstItem="pXq-aa-cHG" firstAttribute="top" secondItem="y8L-Dc-bB2" secondAttribute="bottom" id="dH2-Rj-5wN"/>
+                            <constraint firstItem="y8L-Dc-bB2" firstAttribute="top" secondItem="QB0-d7-hdx" secondAttribute="top" id="kby-WD-czg"/>
                             <constraint firstItem="y8L-Dc-bB2" firstAttribute="top" secondItem="rnC-mF-YXc" secondAttribute="bottom" id="rfj-rC-3Nv"/>
                             <constraint firstItem="y8L-Dc-bB2" firstAttribute="leading" secondItem="QB0-d7-hdx" secondAttribute="leading" id="yyQ-3x-rXU"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Gv6-jr-CJZ"/>
+                                <exclude reference="QWN-98-mGC"/>
                                 <exclude reference="rfj-rC-3Nv"/>
                             </mask>
                         </variation>

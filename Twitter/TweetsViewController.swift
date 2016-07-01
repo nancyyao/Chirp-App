@@ -16,6 +16,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var count = 20
     var loadingMoreView:InfiniteScrollActivityView?
     
+    var customView: UIView!
+    var twitterLogo: UIImageView!
+    var isAnimating = false
+    var refreshControl: UIRefreshControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -36,11 +41,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.contentInset = insets
         
         
-        let refreshControl = UIRefreshControl()
+        refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
+        
+        loadCustomRefreshContents(refreshControl)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,6 +65,41 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }) { (error: NSError) in
             print("error: \(error.localizedDescription)")
         }
+    }
+    
+    //REFRESH
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        count = 20
+        loadData()
+        refreshControl.endRefreshing()
+    }
+    func loadCustomRefreshContents(refreshControl: UIRefreshControl) {
+        let refreshView = NSBundle.mainBundle().loadNibNamed("TweetsRefresh", owner: self, options: nil)
+        customView = refreshView[0] as! UIView
+        customView.frame = refreshControl.bounds
+        twitterLogo = customView.viewWithTag(1) as! UIImageView
+        refreshControl.addSubview(customView)
+        
+    }
+    func animateRefresh(refreshControl: UIRefreshControl) {
+        print("animating")
+        isAnimating = true
+        var count = 1.0
+        UIView.animateWithDuration(0.6, animations: {
+            self.twitterLogo.transform = CGAffineTransformMakeRotation(CGFloat(count * M_PI))
+            self.twitterLogo.transform = CGAffineTransformMakeScale(1.2, 1.2)
+            }, completion: { (finished) -> Void in
+                UIView.animateWithDuration(0.6, animations: {
+                    count = count + 1
+                    self.twitterLogo.transform = CGAffineTransformIdentity
+                    if refreshControl.refreshing {
+                        self.animateRefresh(refreshControl)
+                    }
+                    else {
+                        self.isAnimating = false
+                    }
+                })
+            })
     }
     
     //INFINITE SCROLL
@@ -114,6 +156,15 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 // Code to load more results
                 loadMoreData()
             }
+            
+            if scrollView.contentOffset.y < 0 {
+                print("offset negative")
+                if !isAnimating {
+                    print("not currently animating, running animate")
+                    animateRefresh(refreshControl)
+                }
+            }
+            
         }
     }
     func loadMoreData() {
@@ -133,13 +184,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.loadingMoreView!.stopAnimating()
         self.tableView.reloadData()
-    }
-    
-    //REFRESH
-    func refreshControlAction(refreshControl: UIRefreshControl) {
-        count = 20
-        loadData()
-        refreshControl.endRefreshing()
     }
     
     //LOG OUT

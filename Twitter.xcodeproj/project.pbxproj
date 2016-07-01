@@ -31,6 +31,9 @@
 		F910255C1D25036E001B4550 /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910255B1D25036E001B4550 /* ReplyViewController.swift */; };
 		F910255E1D25B0F5001B4550 /* UserHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F910255D1D25B0F5001B4550 /* UserHeader.xib */; };
 		F91025601D25B223001B4550 /* UserHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910255F1D25B223001B4550 /* UserHeader.swift */; };
+		F98D984D1D26DC74000F9816 /* RefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F98D984C1D26DC74000F9816 /* RefreshView.xib */; };
+		F98D984F1D26DDA7000F9816 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D984E1D26DDA7000F9816 /* RefreshView.swift */; };
+		F98D98511D26E67B000F9816 /* TweetsRefresh.xib in Resources */ = {isa = PBXBuildFile; fileRef = F98D98501D26E67B000F9816 /* TweetsRefresh.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,9 @@
 		F910255B1D25036E001B4550 /* ReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
 		F910255D1D25B0F5001B4550 /* UserHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHeader.xib; sourceTree = "<group>"; };
 		F910255F1D25B223001B4550 /* UserHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeader.swift; sourceTree = "<group>"; };
+		F98D984C1D26DC74000F9816 /* RefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshView.xib; sourceTree = "<group>"; };
+		F98D984E1D26DDA7000F9816 /* RefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
+		F98D98501D26E67B000F9816 /* TweetsRefresh.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetsRefresh.xib; sourceTree = "<group>"; };
 		FCE8B26059DF42940E41094D /* Pods_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -144,8 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				F91024D21D21BBCA001B4550 /* Twitter */,
-				F91024E71D21BBCA001B4550 /* TwitterTests */,
 				F91024F21D21BBCA001B4550 /* TwitterUITests */,
+				F91024E71D21BBCA001B4550 /* TwitterTests */,
 				F91024D11D21BBCA001B4550 /* Products */,
 				A957F9980955270B24F9BB6D /* Pods */,
 				713FA79D97982C25978D7DF1 /* Frameworks */,
@@ -166,8 +172,6 @@
 			isa = PBXGroup;
 			children = (
 				F91024D31D21BBCA001B4550 /* AppDelegate.swift */,
-				F910255D1D25B0F5001B4550 /* UserHeader.xib */,
-				F910255F1D25B223001B4550 /* UserHeader.swift */,
 				F91024D71D21BBCA001B4550 /* Main.storyboard */,
 				F91025031D21CF30001B4550 /* Models */,
 				F91025051D21CF3F001B4550 /* API */,
@@ -187,7 +191,7 @@
 				F91024EA1D21BBCA001B4550 /* Info.plist */,
 			);
 			path = TwitterTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		F91024F21D21BBCA001B4550 /* TwitterUITests */ = {
 			isa = PBXGroup;
@@ -232,9 +236,14 @@
 		F910250E1D223D0B001B4550 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F910255D1D25B0F5001B4550 /* UserHeader.xib */,
+				F910255F1D25B223001B4550 /* UserHeader.swift */,
+				F98D984C1D26DC74000F9816 /* RefreshView.xib */,
 				F910250F1D223D26001B4550 /* TweetTableViewCell.swift */,
 				F91025571D244606001B4550 /* UserTableViewCell.swift */,
 				F91025591D24610F001B4550 /* ProfileTableViewCell.swift */,
+				F98D984E1D26DDA7000F9816 /* RefreshView.swift */,
+				F98D98501D26E67B000F9816 /* TweetsRefresh.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -353,8 +362,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F91024DE1D21BBCA001B4550 /* LaunchScreen.storyboard in Resources */,
+				F98D984D1D26DC74000F9816 /* RefreshView.xib in Resources */,
 				F91024DB1D21BBCA001B4550 /* Assets.xcassets in Resources */,
 				F91024D91D21BBCA001B4550 /* Main.storyboard in Resources */,
+				F98D98511D26E67B000F9816 /* TweetsRefresh.xib in Resources */,
 				F910255E1D25B0F5001B4550 /* UserHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +520,7 @@
 				F91025091D21CF72001B4550 /* Tweet.swift in Sources */,
 				F91025581D244606001B4550 /* UserTableViewCell.swift in Sources */,
 				F91025021D21C368001B4550 /* LoginViewController.swift in Sources */,
+				F98D984F1D26DDA7000F9816 /* RefreshView.swift in Sources */,
 				F910250D1D21E0E5001B4550 /* TweetsViewController.swift in Sources */,
 				F910255C1D25036E001B4550 /* ReplyViewController.swift in Sources */,
 				F91025561D23A610001B4550 /* ProfileViewController.swift in Sources */,
