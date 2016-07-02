@@ -48,17 +48,11 @@ Please list two areas of the assignment you'd like to **discuss further with you
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-Login:
 <img src='http://i.imgur.com/xMJOkEj.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-Compose:
 <img src='http://i.imgur.com/eh2irA8.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-Reply/Unfavorite:
 <img src='http://i.imgur.com/fXAXPRz.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-Favorite/Retweet/Infinite Scrolling:
 <img src='http://i.imgur.com/z2oVMpi.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-Tab Bar/Mentions:
 <img src='http://i.imgur.com/bkHYiMv.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-User/Links:
 <img src='http://i.imgur.com/AQVSz0f.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
