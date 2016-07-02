@@ -59,6 +59,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+
 Working around API rate limits; learning how to work with the API requests (such as for retweeting) and completion blocks; implementing unretweeting.
 
 ## Credits
