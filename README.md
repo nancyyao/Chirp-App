@@ -2,7 +2,7 @@
 
 Chirp is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: 25 hours spent in total
+Time spent: 28 hours spent in total
 
 ## User Stories
 
@@ -48,8 +48,19 @@ Please list two areas of the assignment you'd like to **discuss further with you
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
+Login:
+<img src='http://i.imgur.com/xMJOkEj.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+Compose:
+<img src='http://i.imgur.com/eh2irA8.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+Reply/Unfavorite:
+<img src='http://i.imgur.com/fXAXPRz.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+Favorite/Retweet/Infinite Scrolling:
+<img src='http://i.imgur.com/z2oVMpi.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+Tab Bar/Mentions:
+<img src='http://i.imgur.com/bkHYiMv.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+User/Links:
+<img src='http://i.imgur.com/AQVSz0f.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
