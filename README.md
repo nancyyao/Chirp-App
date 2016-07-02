@@ -38,12 +38,9 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
-
-Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
-
-1.
-2.
+- [x] Mentions tab shows all tweets that the username has been tagged in
+- [x] Refresh control is an animated Twitter icon
+- [x] User can unfavorite, which decrements the favorite count
 
 ## Video Walkthrough
 
@@ -62,12 +59,15 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+Working around API rate limits; learning how to work with the API requests (such as for retweeting) and completion blocks; implementing unretweeting.
 
 ## Credits
 
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
+- [BDBOAuth1Manager](https://github.com/TTTAttributedLabel/TTTAttributedLabel)
+- [TTTAttributedLabel](https://github.com/bdbergeron/BDBOAuth1Manager)
 
 ## License
 
