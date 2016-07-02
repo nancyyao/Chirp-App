@@ -27,7 +27,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             print("error: \(error.localizedDescription)")
             self.loginFailure?(error)
         }
-    }
+    } 
     func logout() {
         User.currentUser = nil
         deauthorize()

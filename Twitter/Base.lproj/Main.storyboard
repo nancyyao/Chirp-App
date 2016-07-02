@@ -1415,9 +1415,9 @@
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="Mt5-KB-a5e"/>
-                                                            <exclude reference="y4v-Jz-nO5"/>
                                                             <exclude reference="ayf-4S-EAL"/>
                                                             <exclude reference="oer-yZ-K08"/>
+                                                            <exclude reference="y4v-Jz-nO5"/>
                                                         </mask>
                                                     </variation>
                                                 </button>
