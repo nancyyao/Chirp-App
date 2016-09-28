@@ -46,7 +46,7 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func loadCustomRefreshContents(refreshControl: UIRefreshControl) {
         let refreshView = NSBundle.mainBundle().loadNibNamed("TweetsRefresh", owner: self, options: nil)
-        customView = refreshView[0] as! UIView
+        customView = refreshView![0] as! UIView
         customView.frame = refreshControl.bounds
         twitterLogo = customView.viewWithTag(1) as! UIImageView
         refreshControl.addSubview(customView)
