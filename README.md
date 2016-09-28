@@ -1,6 +1,6 @@
-# Project 4 - Chirp
+# Chirp iOS App
 
-Chirp is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
+Chirp is a basic twitter client app that can be used to read and compose tweets, using the [Twitter API](https://apps.twitter.com/).
 
 Time spent: 28 hours spent in total
 
